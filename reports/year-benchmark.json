@@ -1,8 +1,9 @@
 {
   "kind": "synthetic computational benchmark, not market performance evidence",
+  "engineVersion": "1.1.0",
   "samples": 525600,
-  "candidates": 48,
-  "seconds": 67.826,
-  "rssMiB": 284.453125,
+  "candidates": 8,
+  "seconds": 11.051,
+  "rssMiB": 278.8125,
   "holdoutExcludedFromSelection": true
 }

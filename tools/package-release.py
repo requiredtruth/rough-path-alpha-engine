@@ -1,6 +1,6 @@
 from pathlib import Path
 import hashlib,zipfile,shutil
-root=Path(__file__).resolve().parents[1];out=root/'releases/v1.0.0';out.mkdir(parents=True,exist_ok=True)
+root=Path(__file__).resolve().parents[1];out=root/'releases/v1.1.0';out.mkdir(parents=True,exist_ok=True)
 for source,name in [(root/'dist/RoughPathAlpha.apk','RoughPathAlpha.apk'),(root/'spec.md','spec.md')]:shutil.copyfile(source,out/name)
 with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
  for p in sorted(root.rglob('*')):

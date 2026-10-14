@@ -225,6 +225,7 @@ let cl=clusteredPublic(others);let overlays=mine.concat(cl.singles,cl.groups);
 const pvScale=priceOf(pair);
 let lo=Math.min(...a.map(c=>c.l)),hi=Math.max(...a.map(c=>c.h));
 if(pvScale>0){lo=Math.min(lo,pvScale);hi=Math.max(hi,pvScale);}for(const p of mine)for(const v of [p.entry,safeLiq(p)])if(Number.isFinite(v)&&v>0){lo=Math.min(lo,v);hi=Math.max(hi,v);}
+if(typeof roughScaleBounds==='function'){const rpPlot=chartPlot(w),rpStep=rpPlot.candleWidth/Math.max(1,a.length),rpBounds=roughScaleBounds(a,full,pair,candleInterval(),view.off===0,rpStep,rpPlot.right,rpPlot.left);if(rpBounds){lo=Math.min(lo,rpBounds.lo);hi=Math.max(hi,rpBounds.hi);}}
 let pad=Math.max((hi-lo)*.15,hi*.0003);lo-=pad;hi+=pad;const scaleSpan=hi-lo;lo+=view.yOff*scaleSpan;hi+=view.yOff*scaleSpan;
 const plot=chartPlot(w),right=plot.right,top=20,bottom=h-40,headPad=plot.left,Y=v=>top+(hi-v)/(hi-lo)*(bottom-top);ctx.font='10px monospace';for(let i=0;i<=6;i++){let v=lo+(hi-lo)*i/6,y=Y(v);ctx.strokeStyle='#202938';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(right,y);ctx.stroke();ctx.fillStyle='#8290a5';ctx.fillText(v.toFixed(2),right+5,y+3)}
 let step=plot.candleWidth/Math.max(1,a.length);
@@ -255,7 +256,7 @@ let lastY=-1e9;for(const o of stackTags){if(o.y<lastY+13)o.y=lastY+13;lastY=o.y;
 for(const o of stackTags)tagLine2(o.t[0],o.t[1],o.t[2],o.t[3],o.t[4],o.t[5],o.y);
 /* Price bars ALWAYS above everything else: candles drawn after all lines. */
 a.forEach((c,i)=>{let x=headPad+(i+.5)*step;ctx.strokeStyle=ctx.fillStyle=c.source==='gap-fill'?'#e8b44c':c.c>=c.o?'#09c78f':'#ff4969';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,Y(c.h));ctx.lineTo(x,Y(c.l));ctx.stroke();ctx.fillRect(x-Math.max(.5,Math.min(6,step*.65))/2,Y(Math.max(c.o,c.c)),Math.max(.5,Math.min(6,step*.65)),Math.max(1,Math.abs(Y(c.o)-Y(c.c))))});
-if(typeof drawRough==='function')drawRough(ctx,a,full,headPad,step,Y,top,bottom,right,pair);
+if(typeof drawRough==='function')drawRough(ctx,a,full,headPad,step,Y,top,bottom,right,pair,candleInterval(),view.off===0);
 /* Price pill stays last and on top. */
 if(pv>0){
 ctx.font='bold 11px monospace';let ptw=12;try{ptw=ctx.measureText(money(pv)).width;}catch{}const py=Y(pv);ctx.fillStyle='#0a1420';ctx.fillRect(3,py-15,ptw+9,14);ctx.strokeStyle=LINE_STYLE.price.color;ctx.lineWidth=1.5;ctx.strokeRect(3,py-15,ptw+9,14);ctx.fillStyle='#ffffff';ctx.fillText(money(pv),7,py-4);}
