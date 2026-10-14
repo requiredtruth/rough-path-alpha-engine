@@ -1,0 +1,1 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.roughpath.qa"><uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35"/><application android:label="Rough Path Worker QA"/><instrumentation android:name="com.roughpath.qa.WorkerCheck" android:targetPackage="com.roughpath.alpha" android:label="Rough Path Worker QA"/></manifest>

@@ -54,7 +54,12 @@ jobs:
           arch: x86_64
           target: google_apis
           disable-animations: true
-          script: bash tests/android-startup.sh releases/v1.0.0/RoughPathAlpha.apk
+          script: |
+            bash tests/android-startup.sh releases/v1.0.0/RoughPathAlpha.apk
+            adb install -r tests/android-worker/test.apk
+            adb shell am force-stop com.roughpath.alpha
+            adb shell am instrument -w com.roughpath.qa/.WorkerCheck | tee build/android-worker.log
+            grep -q 'OK (1 test)' build/android-worker.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
