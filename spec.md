@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine — v1.1.0
+# Rough Path Alpha Engine — v1.2.0
 
 ## Installation and identity
 Signed Android APK, package `com.roughpath.alpha`, Android 8.0/API 26 minimum, API 35 target. Android 10+ supports direct report export to Downloads. Install RoughPathAlpha.apk from the GitHub release. It installs alongside TwinTrade. No account or subscription is needed for market data or backtesting. Live execution requires a funded Polygon wallet with native USDC collateral and POL gas.
@@ -15,7 +15,7 @@ Execution leverage uses current protocol limits, with three decimal precision. T
 PnL subtracts trading fees, borrowing, signed funding and estimated close fees where on-chain fee information is available. Unknown fee/PnL fields show unavailable instead of a fabricated number. Stats and position cards expose collateral, notional, leverage, entry and liquidation levels, holding rates and account available equity. Paper assumptions are editable estimates. Gas, oracle skew, historical fee tiers and market impact are not reconstructed by the backtester.
 
 ## Rough Path indicator
-The turquoise line and signal strip overlay the selected market. Parameters are persisted per app: rolling sample window, score threshold, efficiency gate, signature area weight, smoothing gain, band volatility window, band multiplier, projection slope window, horizon and score weight. Defaults: window 32, threshold 0.8, efficiency 0.1, area weight 1, gain 0.18, band window 32, band multiplier 1.5, projection window 16, horizon 12 samples, projection weight 0.5.
+The turquoise line and signal strip overlay the selected market. Parameters are persisted per app: rolling sample window, score threshold, efficiency gate, signature area weight, smoothing gain, band volatility window, band multiplier, projection slope window, horizon and score weight. Defaults: window 32, threshold 0.8, efficiency 0.1, area weight 1, gain 0.18, band window 32, band multiplier 1.5, projection window 16, base horizon 12 samples, rendered/evaluated horizon 36 samples, projection weight 0.5.
 
 For each rolling time/log-price path, level-2 signatures are computed with Chen concatenation for piecewise linear increments. For a segment increment d, S2 += S1 tensor d + 0.5 d tensor d, then S1 += d. The antisymmetric area is (S12−S21)/2. Time is normalized within the window. Prefix sums compute this rolling area in O(1) per sample. A lead–lag lift's area magnitude equals half the summed squared log-price increments. This quadratic variation normalizes directional return and area; efficiency equals absolute net log return divided by total absolute log variation.
 
@@ -24,9 +24,16 @@ Raw score = log return / sqrt(quadratic variation) + areaWeight * area / sqrt(qu
 ### Upper/lower borders and dotted projection
 Gold upper and rose lower borders enclose the turquoise causal center. Channel half-width = bandMult * center * max(1e-6, sqrt(sum of squared log returns over bandWindow)). A faint fill helps distinguish the channel from trade/liquidation lines. Channel warmup and gap resets suppress signals until all required windows are ready.
 
-Projection slope is ordinary least squares over the past projectionWindow filtered center samples, calculated with O(1) rolling weighted sums. Future center at step h = last center + slope * h; border half-width widens by sqrt(1 + h / bandWindow). These are dotted visual extrapolations, not real future prices or guaranteed confidence bounds. Projection score contribution is projectionWeight * clamp(slope * projectionSteps / current half-width, -5, 5). Thus band window, width, projection window, horizon and score weight change the actual simulated strategy and can be searched. A zero projection weight is an available baseline.
+Each dotted line starts at the exact current value of its own solid counterpart. Its own least-squares slope is fitted over projectionWindow recent samples; when that slope opposes the last segment's direction, the last segment slope is used so the continuation does not immediately point the wrong way. The projected horizon is three times projectionSteps: a base value of 12 renders 36 future samples. The center and both borders have separate trajectories. Borders are bounded against the center if extrapolated lines would cross, and prices stay positive. These are visual extrapolations, not real future prices or guaranteed confidence bounds.
 
-The live chart uses one-minute indicator samples and correctly rescales forecast spacing when candles are aggregated. Projections appear only at the latest edge, with no hindsight projection while panning past data. The price scale includes visible channel and projection bounds. Center, borders/fill and dotted projection visibility are independently adjustable. This is an original channel presentation; no proprietary LuxAlgo source or formula is used.
+Projection score contribution uses the same direction-adjusted center slope over the triple horizon: projectionWeight * clamp(slope * (3 * projectionSteps) / current half-width, -5, 5). Thus the searched base horizon participates in the actual strategy. A zero projection weight remains an available baseline.
+
+The chart computes the overlay on the selected candle timeframe, shown in the chart details and signal strip. Its lookbacks and horizon count these chart samples. Research uses the selected historical dataset's samples (one-minute candles or ticks), so parameters tested on one-minute data correspond directly to the one-minute chart. On larger chart timeframes the same algorithm is recalculated at that resolution. Projections appear only at the latest edge, with no hindsight projection while panning old data. The chart reserves future space dynamically so the extended forecast is visible. The price scale includes visible channel and projection bounds. Center, borders/fill and dotted projection visibility are independently adjustable. This is an original channel presentation; no proprietary LuxAlgo source or formula is used.
+
+### Calendar month and six-month views
+Zoom includes **1 month** and **6 months**, using UTC calendar-month subtraction with valid month-end clamping, plus Min zoom at six months. Monthly charts download actual Coinbase hourly OHLCV in 200-hour pages, with persistent cache reuse, incremental extension, progress and transient-error retries. Additional lookback history warms up the indicator before the visible range. The month preset defaults to four-hour display candles and six months to daily display candles; users can choose hourly or larger candles. No minute-sized historical array is manufactured from hourly data. Missing hours are disclosed and not filled. The latest observed Gains minute candles supply a marked partial current hourly candle, while execution and live PnL continue using Gains oracle marks and index prices.
+
+Research also includes **1 month** and **6 months** date presets for its existing resumable one-minute downloads and parameter search. Its data cache remains separate in namespace from the lightweight chart's hourly pages.
 
 This is an original practical indicator inspired by rough-path signatures. It is not a proof that noise filtering yields profitable alpha. The signal and turquoise line are research outputs, not an exact solution of a stochastic differential equation.
 
@@ -56,7 +63,7 @@ Report: ROI, max drawdown, trades, win rate, fees, holding cost, profit factor, 
 ## Build and release
 JDK 17+, Android SDK platform 35/build-tools 35.0.0, Python 3, zip and Node 22. `install.sh` sets up SDK tooling; `build.sh` builds, aligns and signs the APK. Restore private signing key to `build/signing.jks`, never commit it. Default signing password `android`; alternate password source via RP_KEYSTORE_PASS (apksigner syntax, e.g. env:NAME). `run.sh` serves the local web app on 127.0.0.1:8765, so workers and IndexedDB work on a regular HTTP origin.
 
-Main branch is the development and release branch. Release v1.1.0 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
+Main branch is the development and release branch. Release v1.2.0 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
 
 ## Primary references
 - https://docs.gains.trade/developer/integrators/guides/mark-%2B-index-introduction

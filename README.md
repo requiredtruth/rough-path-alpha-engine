@@ -1,11 +1,11 @@
 # Rough Path Alpha Engine
 
-Android gTrade terminal with a causal Rough Path signature indicator, live Bitcoin chart, upper/lower channel borders, dotted forward projections and an on-device parameter search.
+Android gTrade terminal with a causal Rough Path signature indicator, live Bitcoin chart, upper/lower channel borders, dotted forward projections extended 3× along their own counterparts and an on-device parameter search.
 
 [Download APK, source.zip and spec.md](https://github.com/requiredtruth/rough-path-alpha-engine/releases/latest)
 
 1. Install **RoughPathAlpha.apk** (Android 8+).
-2. Use **Rough α** next to Stats to download Coinbase BTC one-minute data. Last year downloads about 525,600 candles; Download / resume preserves cached progress.
+2. Zoom offers calendar **1 month** and **6 months** charts with cached hourly history. Use **Rough α** next to Stats to download Coinbase BTC one-minute data. Month/six-month research presets and Last year are available; Last year downloads about 525,600 candles; Download / resume preserves cached progress.
 3. Edit parameter lists and simulation costs. The optimizer uses chronological training/validation plus an untouched holdout. The best eligible parameters update the live chart automatically by default, or use Apply selected indicator. Channel and projection settings participate in backtest signal generation.
 4. Paper trading starts with $100. For live orders, configure a funded Polygon wallet in Settings and switch to LIVE. Orders require review and follow actual protocol leverage limits. Research supports 1x–500x; static live minimum is 1.1x until discovery reports otherwise.
 
