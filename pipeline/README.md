@@ -34,3 +34,18 @@ WebSocket recovery lifecycle; Python ReadRouter covers HTTPS JSON reads only.
 Neither module submits orders or accepts private keys.
 
 Run `python3 -m unittest discover -s pipeline -v`.
+
+
+For multi-chain inputs, use `spectrum.ChainSnapshot` and `spectrum.combine`.
+Supply each chain's raw `collaterals`/`pairs` registry and `open-trades` rows,
+a baseline at least 60 seconds earlier, and per-(chain, collateral, pair)
+funding rates. Arbitrum, Polygon and Base are combined by USD notional; the
+previous collateral exposure is revalued at today's price so repricing is not
+counted as new OI. The result includes `oi_long`, `oi_short`, `long_growth`,
+`funding`, `funding_at`, `oi_at` and explicit coverage. Convert these into
+`Microstructure` alongside your measured spot stream; never fill missing
+funding/CVD with zero. The Android web module `spectrum.js` also provides the
+bounded `SpotBook` used for continuous Coinbase/Kraken prints, gap detection
+and two-minute warmup. Stream subscriptions cover the selected market;
+full configured coverage is three chains plus two spot venues, not all global
+exchanges.

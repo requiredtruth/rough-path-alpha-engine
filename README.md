@@ -1,6 +1,6 @@
-# Rough Path Alpha Engine v1.4.0
+# Rough Path Alpha Engine v1.5.0
 
-Main chart: geometric signature center, gold/rose envelopes with live OI/spot/funding deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
+Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
 Python integration: [pipeline/README.md](pipeline/README.md). Full behavior and data limitations: [spec.md](spec.md).
 
