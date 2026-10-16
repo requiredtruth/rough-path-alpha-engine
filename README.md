@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine v1.7.0
+# Rough Path Alpha Engine v1.7.1
 
 Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
@@ -28,3 +28,5 @@ v1.6 adds a **Log** button for endpoint health, retry errors, download progress,
 Panel controls: **−** minimizes, **+** restores, and **Max** assigns spare space to that panel while returning the others to default sizes. Minimize other panels afterward for additional room. **Reset** returns to normal sizing. Layout survives restart and rotation; Settings → Reset panel sizes restores everything. Market feeds and background monitoring continue while panels are minimized.
 
 Automatic gap backfill pauses when you have no open position in that market family; amber placeholders are hidden while flat. Initial chart history still loads. Host lights show current health, keep the last HTTP failure visible, and sort by host rather than last update. Event history stays still until **Refresh events**; **Live follow** is optional and **Freeze view** lets you read any snapshot.
+
+v1.7.1 fixes repeated backfill status text and toolbar wrapping that made the chart bounce. Status is generated from a clean per-market value; toolbar actions stay on one line and the plot keeps its allocated geometry during routine status/rate updates.
