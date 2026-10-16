@@ -1,0 +1,26 @@
+name: Read-only endpoint and data audit
+on:
+  push:
+    branches: [main]
+    paths: ['tools/audit-network.cjs', '.github/workflows/network-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: DNS, HTTP schema, WebSocket payload and RPC checks
+        run: node tools/audit-network.cjs | tee build-network-audit.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: endpoint-data-audit
+          path: |
+            build/network-audit.json
+            build-network-audit.log
