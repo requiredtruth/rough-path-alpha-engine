@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine — v1.5.0
+# Rough Path Alpha Engine — v1.5.1
 
 ## Installation and identity
 Signed Android APK, package `com.roughpath.alpha`, Android 8.0/API 26 minimum, API 35 target. Android 10+ supports direct report export to Downloads. Install RoughPathAlpha.apk from the GitHub release. It installs alongside TwinTrade. No account or subscription is needed for market data or backtesting. Live execution requires a funded Polygon wallet with native USDC collateral and POL gas.
@@ -21,7 +21,7 @@ For each rolling time/log-price path, level-2 signatures are computed with Chen 
 
 Raw score = log return / sqrt(quadratic variation) + areaWeight * area / sqrt(quadratic variation). The structural score scales by (0.5 + 0.5 * smooth), where the legacy `smooth` parameter now controls noise passthrough rather than EMA smoothing. The price center is a causal geometric play operator: tube = close * sqrt(QV / window) * (1 - efficiency) * (1 - smooth); center = clamp(previousCenter, close - tube, close + tube). Straight directional paths pass without EMA phase lag; reversals inside the tube can still have threshold response delay. A truncated signature alone does not remove all microstructural noise, and time-augmented paths are not globally invariant under arbitrary time reparameterization.
 
-Signals require ready windows, the efficiency gate, score threshold, and a matching price residual against the geometric center (nonnegative for long, nonpositive for short). The adjusted score adds projectionWeight times a bounded slope estimate normalized by base channel half-width. This replaces the former lag-driven border-breakout rule. Old optimization reports are displayable but cannot be applied until rerun with engine 1.5.0. Gap fills are excluded; gaps reset warmup. Historical optimizations have no live skew observations and cannot reconstruct historical OI/CVD/funding.
+Signals require ready windows, the efficiency gate, score threshold, and a matching price residual against the geometric center (nonnegative for long, nonpositive for short). The adjusted score adds projectionWeight times a bounded slope estimate normalized by base channel half-width. This replaces the former lag-driven border-breakout rule. Old optimization reports are displayable but cannot be applied until rerun with engine 1.5.1. Gap fills are excluded; gaps reset warmup. Historical optimizations have no live skew observations and cannot reconstruct historical OI/CVD/funding.
 
 ### Upper/lower borders and dotted projection
 Gold upper and rose lower borders enclose the turquoise causal center. Channel half-width = bandMult * center * max(1e-6, sqrt(sum of squared log returns over bandWindow)). A faint fill helps distinguish the channel from trade/liquidation lines. Channel warmup and gap resets suppress signals until all required windows are ready.
@@ -73,7 +73,7 @@ Progress displays method, coverage, best risk, train/validation ROI, elapsed tim
 ## Build and release
 JDK 17+, Android SDK platform 35/build-tools 35.0.0, Python 3, zip and Node 22. `install.sh` sets up SDK tooling; `build.sh` builds, aligns and signs the APK. Restore private signing key to `build/signing.jks`, never commit it. Default signing password `android`; alternate password source via RP_KEYSTORE_PASS (apksigner syntax, e.g. env:NAME). `run.sh` serves the local web app on 127.0.0.1:8765, so workers and IndexedDB work on a regular HTTP origin.
 
-Main branch is the development and release branch. Release v1.5.0 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
+Main branch is the development and release branch. Release v1.5.1 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
 
 ## Primary references
 - https://docs.gains.trade/developer/integrators/guides/mark-%2B-index-introduction
@@ -81,7 +81,7 @@ Main branch is the development and release branch. Release v1.5.0 includes Rough
 - https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-trades
 - https://arxiv.org/abs/1307.7244
 
-## Full-spectrum live OI / spot / funding skew (1.5.0)
+## Full-spectrum live OI / spot / funding skew (1.5.1)
 The gold/rose borders and matching dotted projections use combined Arbitrum (42161), Polygon (137), and Base (8453) exposure. Each chain has an independent open-trades snapshot and collateral/pair registry. Market identities are resolved by symbol using that chain's own pair indices. Regular and DEGEN variants are combined by underlying asset. For every collateral with verified metadata, position notional = raw collateral amount / collateral precision * raw leverage / 1000 * current collateral USD price. All collateral types are eligible; absent USD prices are excluded and counted as partial coverage. No token amount is assumed to equal USD. Identical user/index values on different chains remain distinct; duplicates within one chain are removed.
 
 Long OI accumulation uses snapshots at least one minute apart. Previous collateral-unit exposure is revalued at current collateral USD prices before computing growth, so a rising ETH collateral price alone cannot masquerade as new long positioning. Chain/registry coverage changes reset comparability. Per-chain long/short USD exposure, unpriced-position counts, and availability are shown in the Rough α coverage table; the main chart identifies participating chains. Funding is fetched for every contributing chain/market/collateral group and weighted by its long USD notional. A missing contributing funding rate disables skew rather than silently becoming zero or borrowing another chain's rate. Polygon execution fee settings remain separate from these indicator-only multi-chain rates.
