@@ -1,0 +1,4 @@
+import com.roughpath.alpha.PublicDataPolicy;
+public class PublicDataPolicyTest {
+ public static void main(String[]args){String[] good={"https://backend-arbitrum.gains.trade/open-trades","https://backend-global.gains.dev/api/holding-rates/3/0?chainId=42161","https://backend-pricing.eu.gains.dev/charts","https://api.exchange.coinbase.com/products/BTC-USD/candles"};for(String u:good)if(!PublicDataPolicy.allows(u))throw new AssertionError(u);String[] bad={"http://backend-arbitrum.gains.trade/charts","https://gains.trade.evil.org/charts","https://evilgains.dev/charts","https://user@gains.trade/charts","https://gains.dev:444/charts","https://gains.dev/admin","https://gains.trade/trading-variables-secret","https://api.exchange.coinbase.com/accounts"};for(String u:bad)if(PublicDataPolicy.allows(u))throw new AssertionError(u);System.out.println("PASS: native public data allowlist");}
+}

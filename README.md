@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine v1.5.1
+# Rough Path Alpha Engine v1.6.0
 
 Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
@@ -22,3 +22,5 @@ Actual trade-tick pagination is also available. Tick history is much larger than
 JDK 17+, Node 22+, Android platform 35/build-tools 35.0.0. Run `./install.sh`, restore your private signing key into `build/signing.jks`, then `./build.sh`. `./test.sh` runs mathematical and native regression tests. `npm ci && npm run test:browser` runs mobile UI/worker tests. `./run.sh` opens the web terminal served locally.
 
 Source foundation: requiredtruth/twintrade main 85bc329b2dbd4dd70c95ed4b6cdd4d666446ffc1 and requiredtruth/mobile-trader resumable history module. See THIRD_PARTY_NOTICES.md and [spec.md](spec.md) for formulas, endpoints, assumptions and validation scope.
+
+v1.6 adds a **Log** button for endpoint health, retry errors, download progress, CVD warmup and redacted JSON export. Native public-data HTTPS recovery handles WebView CORS restrictions and stalled sockets without marking stale prices fresh. The chart has a separate indicator strip and compact public labels (Settings → Chart labels); every trade line remains available. Arbitrum, Base and Polygon funding now try both local and global routes. Coinbase spot history fallback is explicitly labeled.

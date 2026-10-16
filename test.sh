@@ -4,7 +4,7 @@ cd "$(dirname "$0")"
 for f in app/src/main/assets/*.js; do node --check "$f"; done
 for t in tests/*.test.cjs; do node "$t"; done
 mkdir -p build/native-tests
-javac -cp "libs/*" -d build/native-tests tests/java/android/content/*.java app/src/main/java/com/roughpath/alpha/MarketStore.java app/src/main/java/com/roughpath/alpha/PriceFeed.java app/src/main/java/com/roughpath/alpha/GainsEndpoints.java tests/java/*.java
-for t in MarketStoreTest NativeReliabilityTest CandleFeesTest PriceFeedTest PerformanceTest GainsEndpointsTest; do java -cp build/native-tests:libs/json-20240303.jar "$t"; done
+javac -cp "libs/*" -d build/native-tests tests/java/android/content/*.java app/src/main/java/com/roughpath/alpha/MarketStore.java app/src/main/java/com/roughpath/alpha/PriceFeed.java app/src/main/java/com/roughpath/alpha/GainsEndpoints.java app/src/main/java/com/roughpath/alpha/PublicDataPolicy.java tests/java/*.java
+for t in MarketStoreTest NativeReliabilityTest CandleFeesTest PriceFeedTest PerformanceTest GainsEndpointsTest PublicDataPolicyTest; do java -cp build/native-tests:libs/json-20240303.jar "$t"; done
 python3 -m unittest discover -s pipeline -v
 python3 tools/package-web.py
