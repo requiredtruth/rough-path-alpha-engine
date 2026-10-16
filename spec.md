@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine — v1.6.0
+# Rough Path Alpha Engine — v1.6.1
 
 ## Installation and identity
 Signed Android APK, package `com.roughpath.alpha`, Android 8.0/API 26 minimum, API 35 target. Android 10+ supports direct report export to Downloads. Install RoughPathAlpha.apk from the GitHub release. It installs alongside TwinTrade. No account or subscription is needed for market data or backtesting. Live execution requires a funded Polygon wallet with native USDC collateral and POL gas.
@@ -73,7 +73,7 @@ Progress displays method, coverage, best risk, train/validation ROI, elapsed tim
 ## Build and release
 JDK 17+, Android SDK platform 35/build-tools 35.0.0, Python 3, zip and Node 22. `install.sh` sets up SDK tooling; `build.sh` builds, aligns and signs the APK. Restore private signing key to `build/signing.jks`, never commit it. Default signing password `android`; alternate password source via RP_KEYSTORE_PASS (apksigner syntax, e.g. env:NAME). `run.sh` serves the local web app on 127.0.0.1:8765, so workers and IndexedDB work on a regular HTTP origin.
 
-Main branch is the development and release branch. Release v1.6.0 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
+Main branch is the development and release branch. Release v1.6.1 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
 
 ## Primary references
 - https://docs.gains.trade/developer/integrators/guides/mark-%2B-index-introduction
@@ -110,3 +110,5 @@ The Log dialog retains up to 300 sanitized events, 80 endpoint states and 40 dow
 Public native HTTPS reads use a fixed pool and a strict host/path allowlist, disable redirects, enforce connect/read timeouts and a 16 MB response cap. The Java bridge bypasses WebView CORS for public Gains data. Pricing normalizes seconds/milliseconds/microseconds/nanoseconds, accepts at most two seconds of future skew clamped to receipt time, and rejects quotes at least five seconds old. HTTPS recovery requires a source timestamp; historical chart snapshots never acquire a current timestamp. This does not guarantee provider availability.
 
 Funding reads try a chain-specific backend and the global holding-rates route with the exact chain ID (Arbitrum 42161, Polygon 137, Base 8453), then apply the existing domain fallback. Borrowing is not substituted for missing funding. Spot history fallback is labeled Coinbase spot, is separate from the executable oracle price, and cannot overwrite Gains candles. The indicator strip displays structural score, long-OI growth, spot imbalance, hourly funding and heuristic cascade pressure; these are not calibrated probabilities. Compact labels limit public annotations while preserving every available trade line.
+
+The v1.6.1 UI patch reserves the full fee-row height in landscape to keep metric headings visible. The numerical research engine stays at 1.6.0; report compatibility and indicator calculations are unchanged.

@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine v1.6.0
+# Rough Path Alpha Engine v1.6.1
 
 Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
