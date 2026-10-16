@@ -1,0 +1,1520 @@
+{
+  "at": "2026-10-16T23:22:00Z",
+  "run": "https://github.com/requiredtruth/rough-path-alpha-engine/actions/runs/38981067469",
+  "results": [
+    {
+      "kind": "dns",
+      "host": "backend-pricing.us.gains.trade",
+      "ok": true,
+      "addresses": [
+        "2.59.170.20",
+        "104.219.250.37"
+      ],
+      "latency": 73
+    },
+    {
+      "kind": "dns",
+      "host": "backend-pricing.eu.gains.trade",
+      "ok": true,
+      "addresses": [
+        "104.219.250.37",
+        "2.59.170.20"
+      ],
+      "latency": 80
+    },
+    {
+      "kind": "dns",
+      "host": "backend-arbitrum.gains.trade",
+      "ok": true,
+      "addresses": [
+        "104.219.250.37",
+        "2.59.170.20"
+      ],
+      "latency": 139
+    },
+    {
+      "kind": "dns",
+      "host": "backend-global.gains.trade",
+      "ok": true,
+      "addresses": [
+        "104.219.250.37",
+        "2.59.170.20"
+      ],
+      "latency": 191
+    },
+    {
+      "kind": "dns",
+      "host": "api.gains.trade",
+      "ok": true,
+      "addresses": [
+        "2.59.170.20",
+        "104.219.250.37"
+      ],
+      "latency": 271
+    },
+    {
+      "kind": "dns",
+      "host": "backend-polygon.gains.trade",
+      "ok": true,
+      "addresses": [
+        "2.59.170.20",
+        "104.219.250.37"
+      ],
+      "latency": 333
+    },
+    {
+      "kind": "dns",
+      "host": "backend-pricing.gains.trade",
+      "ok": true,
+      "addresses": [
+        "104.219.250.37",
+        "2.59.170.20"
+      ],
+      "latency": 364
+    },
+    {
+      "kind": "dns",
+      "host": "backend-base.gains.trade",
+      "ok": true,
+      "addresses": [
+        "2.59.170.20",
+        "104.219.250.37"
+      ],
+      "latency": 374
+    },
+    {
+      "kind": "dns",
+      "host": "backend-pricing.us.gains.dev",
+      "ok": false,
+      "error": "getaddrinfo ENOTFOUND backend-pricing.us.gains.dev",
+      "cause": "ENOTFOUND"
+    },
+    {
+      "kind": "dns",
+      "host": "backend-pricing.gains.dev",
+      "ok": false,
+      "error": "getaddrinfo ENOTFOUND backend-pricing.gains.dev",
+      "cause": "ENOTFOUND"
+    },
+    {
+      "kind": "dns",
+      "host": "backend-pricing.eu.gains.dev",
+      "ok": false,
+      "error": "getaddrinfo ENOTFOUND backend-pricing.eu.gains.dev",
+      "cause": "ENOTFOUND"
+    },
+    {
+      "kind": "dns",
+      "host": "backend-arbitrum.gains.dev",
+      "ok": true,
+      "addresses": [
+        "104.21.81.53",
+        "172.67.138.218",
+        "2606:4700:3031::ac43:8ada",
+        "2606:4700:3031::6815:5135"
+      ],
+      "latency": 351
+    },
+    {
+      "kind": "dns",
+      "host": "api.gains.dev",
+      "ok": true,
+      "addresses": [
+        "104.21.81.53",
+        "172.67.138.218",
+        "2606:4700:3031::6815:5135",
+        "2606:4700:3031::ac43:8ada"
+      ],
+      "latency": 227
+    },
+    {
+      "kind": "dns",
+      "host": "backend-global.gains.dev",
+      "ok": true,
+      "addresses": [
+        "104.21.81.53",
+        "172.67.138.218",
+        "2606:4700:3031::6815:5135",
+        "2606:4700:3031::ac43:8ada"
+      ],
+      "latency": 360
+    },
+    {
+      "kind": "dns",
+      "host": "backend-base.gains.dev",
+      "ok": true,
+      "addresses": [
+        "104.21.81.53",
+        "172.67.138.218",
+        "2606:4700:3031::6815:5135",
+        "2606:4700:3031::ac43:8ada"
+      ],
+      "latency": 317
+    },
+    {
+      "kind": "dns",
+      "host": "backend-polygon.gains.dev",
+      "ok": true,
+      "addresses": [
+        "104.21.81.53",
+        "172.67.138.218",
+        "2606:4700:3031::ac43:8ada",
+        "2606:4700:3031::6815:5135"
+      ],
+      "latency": 335
+    },
+    {
+      "kind": "dns",
+      "host": "api.exchange.coinbase.com",
+      "ok": true,
+      "addresses": [
+        "172.64.151.78",
+        "104.18.36.178",
+        "2606:4700:4400::ac40:974e",
+        "2a06:98c1:3101::6812:24b2"
+      ],
+      "latency": 283
+    },
+    {
+      "kind": "dns",
+      "host": "ws.kraken.com",
+      "ok": true,
+      "addresses": [
+        "104.17.185.205",
+        "104.17.187.205",
+        "104.17.188.205",
+        "104.17.186.205",
+        "104.17.189.205"
+      ],
+      "latency": 240
+    },
+    {
+      "kind": "dns",
+      "host": "ws-feed.exchange.coinbase.com",
+      "ok": true,
+      "addresses": [
+        "104.18.36.178",
+        "172.64.151.78",
+        "2606:4700:4400::ac40:974e",
+        "2a06:98c1:3101::6812:24b2"
+      ],
+      "latency": 269
+    },
+    {
+      "kind": "dns",
+      "host": "polygon-bor-rpc.publicnode.com",
+      "ok": true,
+      "addresses": [
+        "172.66.150.162",
+        "104.20.24.117",
+        "2606:4700:10::6814:1875",
+        "2606:4700:10::ac42:96a2"
+      ],
+      "latency": 225
+    },
+    {
+      "kind": "dns",
+      "host": "polygon.drpc.org",
+      "ok": true,
+      "addresses": [
+        "104.20.46.180",
+        "172.66.146.203",
+        "2606:4700:10::ac42:92cb",
+        "2606:4700:10::6814:2eb4"
+      ],
+      "latency": 173
+    },
+    {
+      "kind": "dns",
+      "host": "polygon-rpc.com",
+      "ok": true,
+      "addresses": [
+        "198.178.224.35"
+      ],
+      "latency": 286
+    },
+    {
+      "kind": "dns",
+      "host": "arbitrum-one-rpc.publicnode.com",
+      "ok": true,
+      "addresses": [
+        "104.20.24.117",
+        "172.66.150.162",
+        "2606:4700:10::ac42:96a2",
+        "2606:4700:10::6814:1875"
+      ],
+      "latency": 172
+    },
+    {
+      "kind": "dns",
+      "host": "base-rpc.publicnode.com",
+      "ok": true,
+      "addresses": [
+        "104.20.24.117",
+        "172.66.150.162",
+        "2606:4700:10::6814:1875",
+        "2606:4700:10::ac42:96a2"
+      ],
+      "latency": 195
+    },
+    {
+      "kind": "dns",
+      "host": "polygon.api.onfinality.io",
+      "ok": true,
+      "addresses": [
+        "142.215.53.55"
+      ],
+      "latency": 262
+    },
+    {
+      "kind": "charts",
+      "url": "https://backend-pricing.us.gains.trade/charts",
+      "ok": false,
+      "latency": 972,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "charts",
+      "url": "https://backend-pricing.gains.trade/charts",
+      "ok": false,
+      "latency": 168,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "legacy-price",
+      "url": "wss://backend-pricing.gains.trade/v4",
+      "latency": 125,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "backend-ws",
+      "url": "wss://backend-arbitrum.gains.trade",
+      "latency": 378,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "history",
+      "url": "https://backend-global.gains.trade/api/trading-history/24h?chainId=42161",
+      "ok": false,
+      "latency": 207,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.trade/trading-variables/collaterals,pairs",
+      "ok": false,
+      "latency": 335,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.trade/trading-variables/pairs,groups,pairInfos",
+      "ok": false,
+      "latency": 227,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.trade/trading-variables/all",
+      "ok": false,
+      "latency": 119,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.trade/open-trades",
+      "ok": false,
+      "latency": 123,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-arbitrum.gains.trade/api/holding-rates/3/0?chainId=42161",
+      "ok": false,
+      "latency": 423,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-global.gains.trade/api/holding-rates/3/0?chainId=42161",
+      "ok": false,
+      "latency": 200,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/arbitrum/prices",
+      "ok": false,
+      "latency": 180,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/arbitrum/markets",
+      "ok": false,
+      "latency": 91,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/arbitrum/markets/BTC%2FUSD/funding",
+      "ok": false,
+      "latency": 201,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/arbitrum/markets/BTC%2FUSD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": false,
+      "latency": 406,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern-price",
+      "url": "wss://api.gains.trade/v1/arbitrum/ws",
+      "latency": 208,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "backend-ws",
+      "url": "wss://backend-polygon.gains.trade",
+      "latency": 205,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "history",
+      "url": "https://backend-global.gains.trade/api/trading-history/24h?chainId=137",
+      "ok": false,
+      "latency": 396,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.trade/trading-variables/collaterals,pairs",
+      "ok": false,
+      "latency": 406,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.trade/trading-variables/pairs,groups,pairInfos",
+      "ok": false,
+      "latency": 128,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.trade/trading-variables/all",
+      "ok": false,
+      "latency": 138,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.trade/open-trades",
+      "ok": false,
+      "latency": 417,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-polygon.gains.trade/api/holding-rates/3/0?chainId=137",
+      "ok": false,
+      "latency": 103,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-global.gains.trade/api/holding-rates/3/0?chainId=137",
+      "ok": false,
+      "latency": 403,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/polygon/prices",
+      "ok": false,
+      "latency": 136,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/polygon/markets",
+      "ok": false,
+      "latency": 141,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/polygon/markets/BTC%2FUSD/funding",
+      "ok": false,
+      "latency": 383,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/polygon/markets/BTC%2FUSD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": false,
+      "latency": 87,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern-price",
+      "url": "wss://api.gains.trade/v1/polygon/ws",
+      "latency": 383,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "backend-ws",
+      "url": "wss://backend-base.gains.trade",
+      "latency": 162,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "charts",
+      "url": "https://backend-pricing.eu.gains.trade/charts",
+      "ok": false,
+      "latency": 8002,
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "kind": "history",
+      "url": "https://backend-global.gains.trade/api/trading-history/24h?chainId=8453",
+      "ok": false,
+      "latency": 120,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.trade/trading-variables/collaterals,pairs",
+      "ok": false,
+      "latency": 145,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.trade/trading-variables/pairs,groups,pairInfos",
+      "ok": false,
+      "latency": 399,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.trade/trading-variables/all",
+      "ok": false,
+      "latency": 417,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.trade/open-trades",
+      "ok": false,
+      "latency": 393,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-base.gains.trade/api/holding-rates/3/0?chainId=8453",
+      "ok": false,
+      "latency": 414,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/base/prices",
+      "ok": false,
+      "latency": 135,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/base/markets",
+      "ok": false,
+      "latency": 86,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-global.gains.trade/api/holding-rates/3/0?chainId=8453",
+      "ok": false,
+      "latency": 466,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/base/markets/BTC%2FUSD/funding",
+      "ok": false,
+      "latency": 112,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "modern-price",
+      "url": "wss://api.gains.trade/v1/base/ws",
+      "latency": 159,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.trade/v1/base/markets/BTC%2FUSD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": false,
+      "latency": 371,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "old-symbol",
+      "url": "https://api.gains.trade/v1/arbitrum/markets/BTC-USD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": false,
+      "latency": 168,
+      "error": "fetch failed",
+      "cause": "ECONNRESET"
+    },
+    {
+      "kind": "legacy-price",
+      "url": "wss://backend-pricing.eu.gains.dev/v4",
+      "latency": 139,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "charts",
+      "url": "https://backend-pricing.eu.gains.dev/charts",
+      "ok": false,
+      "latency": 142,
+      "error": "fetch failed",
+      "cause": "ENOTFOUND",
+      "hostname": "backend-pricing.eu.gains.dev"
+    },
+    {
+      "kind": "legacy-price",
+      "url": "wss://backend-pricing.us.gains.dev/v4",
+      "latency": 15,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "charts",
+      "url": "https://backend-pricing.us.gains.dev/charts",
+      "ok": false,
+      "latency": 17,
+      "error": "fetch failed",
+      "cause": "ENOTFOUND",
+      "hostname": "backend-pricing.us.gains.dev"
+    },
+    {
+      "kind": "legacy-price",
+      "url": "wss://backend-pricing.gains.dev/v4",
+      "latency": 14,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "charts",
+      "url": "https://backend-pricing.gains.dev/charts",
+      "ok": false,
+      "latency": 16,
+      "error": "fetch failed",
+      "cause": "ENOTFOUND",
+      "hostname": "backend-pricing.gains.dev"
+    },
+    {
+      "kind": "history",
+      "url": "https://backend-global.gains.dev/api/trading-history/24h?chainId=42161",
+      "ok": true,
+      "http": 200,
+      "latency": 257,
+      "keys": [
+        "array"
+      ],
+      "count": 1335,
+      "rowKeys": [
+        "date",
+        "pair",
+        "address",
+        "action",
+        "price",
+        "collateralPriceUsd",
+        "long",
+        "size",
+        "leverage",
+        "pnl_net",
+        "tx",
+        "collateralIndex",
+        "tradeIndex",
+        "collateralDelta",
+        "leverageDelta",
+        "marketPrice",
+        "isCounterTrade",
+        "meta"
+      ]
+    },
+    {
+      "kind": "backend-ws",
+      "url": "wss://backend-arbitrum.gains.dev",
+      "latency": 293,
+      "ok": true,
+      "event": "currentBlock",
+      "keys": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.dev/trading-variables/pairs,groups,pairInfos",
+      "ok": true,
+      "http": 200,
+      "latency": 166,
+      "keys": [
+        "pairs",
+        "groups",
+        "pairInfos"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.dev/trading-variables/collaterals,pairs",
+      "ok": true,
+      "http": 200,
+      "latency": 283,
+      "keys": [
+        "collaterals",
+        "pairs"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.dev/trading-variables/all",
+      "ok": true,
+      "http": 200,
+      "latency": 162,
+      "keys": [
+        "lastRefreshed",
+        "refreshId",
+        "tradingState",
+        "maxGainP",
+        "marketOrdersTimeoutBlocks",
+        "globalTradeFeeParams",
+        "borrowingFeePerBlockCap",
+        "pairs",
+        "groups",
+        "fees",
+        "pairInfos",
+        "liquidationParams",
+        "counterTradeSettings",
+        "collaterals",
+        "sssTokenBalance",
+        "sssLegacyTokenBalance",
+        "sssRewardTokens",
+        "vaultClosingFeeP",
+        "maxNegativePnlOnOpenP",
+        "blockConfirmations"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-arbitrum.gains.dev/open-trades",
+      "ok": true,
+      "http": 200,
+      "latency": 124,
+      "keys": [
+        "array"
+      ],
+      "count": 999,
+      "rowKeys": [
+        "trade",
+        "tradeInfo",
+        "liquidationParams",
+        "initialAccFees",
+        "tradeFeesData",
+        "uiRealizedPnlData"
+      ]
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-arbitrum.gains.dev/api/holding-rates/3/0?chainId=42161",
+      "ok": false,
+      "http": 404,
+      "latency": 52
+    },
+    {
+      "kind": "legacy-price",
+      "url": "wss://backend-pricing.eu.gains.trade/v4",
+      "latency": 10487,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "legacy-price",
+      "url": "wss://backend-pricing.us.gains.trade/v4",
+      "latency": 10485,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-global.gains.dev/api/holding-rates/3/0?chainId=42161",
+      "ok": true,
+      "http": 200,
+      "latency": 63,
+      "keys": [
+        "holdingRates"
+      ],
+      "count": 877,
+      "rowKeys": [
+        "timestamp",
+        "borrowingFeeV1LongHourlyRate",
+        "borrowingFeeV1ShortHourlyRate",
+        "borrowingFeeV2HourlyRate",
+        "fundingFeeLongHourlyRate",
+        "fundingFeeShortHourlyRate"
+      ],
+      "lastRate": {
+        "timestamp": 1792146053,
+        "borrowingFeeV1LongHourlyRate": 0,
+        "borrowingFeeV1ShortHourlyRate": 0,
+        "borrowingFeeV2HourlyRate": 0.00000228,
+        "fundingFeeLongHourlyRate": 4e-8,
+        "fundingFeeShortHourlyRate": -3e-8
+      }
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/arbitrum/prices",
+      "ok": true,
+      "http": 200,
+      "latency": 182,
+      "keys": [
+        "data"
+      ],
+      "count": 339,
+      "rowKeys": [
+        "market",
+        "mark",
+        "index",
+        "updatedAt"
+      ],
+      "btc": {
+        "market": "BTC/USD",
+        "mark": "81609",
+        "index": "82221.5",
+        "updatedAt": 1792192954519
+      }
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/arbitrum/markets/BTC%2FUSD/funding",
+      "ok": true,
+      "http": 200,
+      "latency": 154,
+      "keys": [
+        "market",
+        "fundingRateLongHourly",
+        "fundingRateShortHourly",
+        "borrowingRateHourly",
+        "openInterestLongUsd",
+        "openInterestShortUsd",
+        "skewUsd"
+      ],
+      "fields": {
+        "market": "BTC/USD",
+        "fundingRateLongHourly": "-0.000014958999867026885",
+        "fundingRateShortHourly": "0.000007818952144324597",
+        "borrowingRateHourly": "0.0000022824",
+        "openInterestLongUsd": "741636.6748946923",
+        "openInterestShortUsd": "1418878.4783885232"
+      }
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/arbitrum/markets",
+      "ok": true,
+      "http": 200,
+      "latency": 264,
+      "keys": [
+        "data"
+      ],
+      "count": 488,
+      "rowKeys": [
+        "symbol",
+        "pairIndex",
+        "base",
+        "quote",
+        "group",
+        "groupIndex",
+        "feeIndex",
+        "isOpen",
+        "minLeverage",
+        "maxLeverage",
+        "minCollateralUsd",
+        "minPositionUsd",
+        "pricePrecision",
+        "sizePrecision",
+        "spreadRate",
+        "fees",
+        "funding",
+        "onlyIsolated",
+        "collaterals"
+      ],
+      "btc": {
+        "symbol": "BTC/USD",
+        "pairIndex": 0,
+        "funding": {
+          "fundingRateLongHourly": "-0.000014958999867026885",
+          "fundingRateShortHourly": "0.000007818952144324597",
+          "borrowingRateHourly": "0.0000022824",
+          "openInterestLongUsd": "741636.6748946923",
+          "openInterestShortUsd": "1418878.4783885232",
+          "skewUsd": "-677241.8034938308"
+        }
+      }
+    },
+    {
+      "kind": "modern-price",
+      "url": "wss://api.gains.dev/v1/arbitrum/ws",
+      "latency": 162,
+      "ok": true,
+      "keys": [
+        "data"
+      ],
+      "count": 339,
+      "rowKeys": [
+        "market",
+        "mark",
+        "index",
+        "updatedAt"
+      ],
+      "btc": {
+        "market": "BTC/USD",
+        "mark": "81619.8",
+        "index": "82221.5",
+        "updatedAt": 1792192956520
+      }
+    },
+    {
+      "kind": "history",
+      "url": "https://backend-global.gains.dev/api/trading-history/24h?chainId=137",
+      "ok": true,
+      "http": 200,
+      "latency": 76,
+      "keys": [
+        "array"
+      ],
+      "count": 58,
+      "rowKeys": [
+        "date",
+        "pair",
+        "address",
+        "action",
+        "price",
+        "collateralPriceUsd",
+        "long",
+        "size",
+        "leverage",
+        "pnl_net",
+        "tx",
+        "collateralIndex",
+        "tradeIndex",
+        "collateralDelta",
+        "leverageDelta",
+        "marketPrice",
+        "isCounterTrade",
+        "meta"
+      ]
+    },
+    {
+      "kind": "backend-ws",
+      "url": "wss://backend-polygon.gains.dev",
+      "latency": 325,
+      "ok": true,
+      "event": "currentBlock",
+      "keys": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.dev/trading-variables/pairs,groups,pairInfos",
+      "ok": true,
+      "http": 200,
+      "latency": 191,
+      "keys": [
+        "pairs",
+        "groups",
+        "pairInfos"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.dev/trading-variables/collaterals,pairs",
+      "ok": true,
+      "http": 200,
+      "latency": 241,
+      "keys": [
+        "collaterals",
+        "pairs"
+      ]
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/arbitrum/markets/BTC%2FUSD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": true,
+      "http": 200,
+      "latency": 532,
+      "keys": [
+        "data"
+      ],
+      "count": 10,
+      "rowKeys": [
+        "time",
+        "open",
+        "high",
+        "low",
+        "close"
+      ]
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-polygon.gains.dev/api/holding-rates/3/0?chainId=137",
+      "ok": false,
+      "http": 404,
+      "latency": 49
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-global.gains.dev/api/holding-rates/3/0?chainId=137",
+      "ok": true,
+      "http": 200,
+      "latency": 61,
+      "keys": [
+        "holdingRates"
+      ],
+      "count": 561,
+      "rowKeys": [
+        "timestamp",
+        "borrowingFeeV1LongHourlyRate",
+        "borrowingFeeV1ShortHourlyRate",
+        "borrowingFeeV2HourlyRate",
+        "fundingFeeLongHourlyRate",
+        "fundingFeeShortHourlyRate"
+      ],
+      "lastRate": {
+        "timestamp": 1792146052,
+        "borrowingFeeV1LongHourlyRate": 0,
+        "borrowingFeeV1ShortHourlyRate": 0,
+        "borrowingFeeV2HourlyRate": 0.00000228,
+        "fundingFeeLongHourlyRate": 0.00005892,
+        "fundingFeeShortHourlyRate": -0.00032461
+      }
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.dev/trading-variables/all",
+      "ok": true,
+      "http": 200,
+      "latency": 165,
+      "keys": [
+        "lastRefreshed",
+        "refreshId",
+        "tradingState",
+        "maxGainP",
+        "marketOrdersTimeoutBlocks",
+        "globalTradeFeeParams",
+        "borrowingFeePerBlockCap",
+        "pairs",
+        "groups",
+        "fees",
+        "pairInfos",
+        "liquidationParams",
+        "counterTradeSettings",
+        "collaterals",
+        "sssTokenBalance",
+        "sssLegacyTokenBalance",
+        "sssRewardTokens",
+        "vaultClosingFeeP",
+        "maxNegativePnlOnOpenP",
+        "blockConfirmations"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-polygon.gains.dev/open-trades",
+      "ok": true,
+      "http": 200,
+      "latency": 118,
+      "keys": [
+        "array"
+      ],
+      "count": 55,
+      "rowKeys": [
+        "trade",
+        "tradeInfo",
+        "liquidationParams",
+        "initialAccFees",
+        "tradeFeesData",
+        "uiRealizedPnlData"
+      ]
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/polygon/markets",
+      "ok": false,
+      "http": 404,
+      "latency": 57
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/polygon/markets/BTC%2FUSD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": false,
+      "http": 404,
+      "latency": 62
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/polygon/markets/BTC%2FUSD/funding",
+      "ok": false,
+      "http": 404,
+      "latency": 76
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/polygon/prices",
+      "ok": false,
+      "http": 404,
+      "latency": 126
+    },
+    {
+      "kind": "modern-price",
+      "url": "wss://api.gains.dev/v1/polygon/ws",
+      "latency": 138,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "history",
+      "url": "https://backend-global.gains.dev/api/trading-history/24h?chainId=8453",
+      "ok": true,
+      "http": 200,
+      "latency": 89,
+      "keys": [
+        "array"
+      ],
+      "count": 701,
+      "rowKeys": [
+        "date",
+        "pair",
+        "address",
+        "action",
+        "price",
+        "collateralPriceUsd",
+        "long",
+        "size",
+        "leverage",
+        "pnl_net",
+        "tx",
+        "collateralIndex",
+        "tradeIndex",
+        "collateralDelta",
+        "leverageDelta",
+        "marketPrice",
+        "isCounterTrade",
+        "meta"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.dev/trading-variables/collaterals,pairs",
+      "ok": true,
+      "http": 200,
+      "latency": 202,
+      "keys": [
+        "collaterals",
+        "pairs"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.dev/trading-variables/pairs,groups,pairInfos",
+      "ok": true,
+      "http": 200,
+      "latency": 186,
+      "keys": [
+        "pairs",
+        "groups",
+        "pairInfos"
+      ]
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.dev/trading-variables/all",
+      "ok": true,
+      "http": 200,
+      "latency": 207,
+      "keys": [
+        "lastRefreshed",
+        "refreshId",
+        "tradingState",
+        "maxGainP",
+        "marketOrdersTimeoutBlocks",
+        "globalTradeFeeParams",
+        "borrowingFeePerBlockCap",
+        "pairs",
+        "groups",
+        "fees",
+        "pairInfos",
+        "liquidationParams",
+        "counterTradeSettings",
+        "collaterals",
+        "sssTokenBalance",
+        "sssLegacyTokenBalance",
+        "sssRewardTokens",
+        "vaultClosingFeeP",
+        "maxNegativePnlOnOpenP",
+        "blockConfirmations"
+      ]
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-base.gains.dev/api/holding-rates/3/0?chainId=8453",
+      "ok": false,
+      "http": 404,
+      "latency": 64
+    },
+    {
+      "kind": "funding",
+      "url": "https://backend-global.gains.dev/api/holding-rates/3/0?chainId=8453",
+      "ok": true,
+      "http": 200,
+      "latency": 64,
+      "keys": [
+        "holdingRates"
+      ],
+      "count": 0
+    },
+    {
+      "kind": "backend",
+      "url": "https://backend-base.gains.dev/open-trades",
+      "ok": true,
+      "http": 200,
+      "latency": 173,
+      "keys": [
+        "array"
+      ],
+      "count": 447,
+      "rowKeys": [
+        "trade",
+        "tradeInfo",
+        "liquidationParams",
+        "initialAccFees",
+        "tradeFeesData",
+        "uiRealizedPnlData"
+      ]
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/base/prices",
+      "ok": false,
+      "http": 404,
+      "latency": 45
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/base/markets",
+      "ok": false,
+      "http": 404,
+      "latency": 56
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/base/markets/BTC%2FUSD/funding",
+      "ok": false,
+      "http": 404,
+      "latency": 66
+    },
+    {
+      "kind": "modern",
+      "url": "https://api.gains.dev/v1/base/markets/BTC%2FUSD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": false,
+      "http": 404,
+      "latency": 65
+    },
+    {
+      "kind": "modern-price",
+      "url": "wss://api.gains.dev/v1/base/ws",
+      "latency": 94,
+      "ok": false,
+      "error": "WebSocket transport error"
+    },
+    {
+      "kind": "spot-candles",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=60&start=2026-10-16T23:12:00.000Z&end=2026-10-16T23:22:00.000Z",
+      "ok": true,
+      "http": 200,
+      "latency": 71,
+      "keys": [
+        "array"
+      ],
+      "count": 11,
+      "rowKeys": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "kind": "spot-trades",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/trades?limit=2",
+      "ok": true,
+      "http": 200,
+      "latency": 83,
+      "keys": [
+        "array"
+      ],
+      "count": 2,
+      "rowKeys": [
+        "trade_id",
+        "side",
+        "size",
+        "price",
+        "time"
+      ]
+    },
+    {
+      "kind": "old-symbol",
+      "url": "https://api.gains.dev/v1/arbitrum/markets/BTC-USD/candles?interval=1m&from=1792192320000&to=1792192920000",
+      "ok": true,
+      "http": 200,
+      "latency": 183,
+      "keys": [
+        "data"
+      ],
+      "count": 10,
+      "rowKeys": [
+        "time",
+        "open",
+        "high",
+        "low",
+        "close"
+      ]
+    },
+    {
+      "kind": "spot-hourly",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=3600&start=2026-10-16T13:12:00.000Z&end=2026-10-16T23:22:00.000Z",
+      "ok": true,
+      "http": 200,
+      "latency": 120,
+      "keys": [
+        "array"
+      ],
+      "count": 10,
+      "rowKeys": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "kind": "rpc",
+      "url": "https://polygon-bor-rpc.publicnode.com",
+      "ok": true,
+      "http": 200,
+      "latency": 91,
+      "keys": [
+        "jsonrpc",
+        "result",
+        "id"
+      ],
+      "result": "0x89"
+    },
+    {
+      "kind": "rpc",
+      "url": "https://polygon-rpc.com",
+      "ok": false,
+      "http": 401,
+      "latency": 124
+    },
+    {
+      "kind": "rpc",
+      "url": "https://polygon.drpc.org",
+      "ok": true,
+      "http": 200,
+      "latency": 78,
+      "keys": [
+        "id",
+        "jsonrpc",
+        "result"
+      ],
+      "result": "0x89"
+    },
+    {
+      "kind": "kraken",
+      "url": "wss://ws.kraken.com/v2",
+      "latency": 317,
+      "ok": true,
+      "sourceTime": "2026-10-16T23:22:08.485138Z",
+      "rowKeys": [
+        "symbol",
+        "side",
+        "price",
+        "qty",
+        "ord_type",
+        "trade_id",
+        "timestamp"
+      ]
+    },
+    {
+      "kind": "coinbase",
+      "url": "wss://ws-feed.exchange.coinbase.com",
+      "latency": 383,
+      "ok": true,
+      "sourceTime": "2026-10-16T23:22:38.021973Z",
+      "rowKeys": [
+        "type",
+        "trade_id",
+        "maker_order_id",
+        "taker_order_id",
+        "side",
+        "size",
+        "price",
+        "product_id",
+        "sequence",
+        "time"
+      ],
+      "price": "81621.05"
+    },
+    {
+      "kind": "rpc",
+      "url": "https://arbitrum-one-rpc.publicnode.com",
+      "ok": true,
+      "http": 200,
+      "latency": 79,
+      "keys": [
+        "jsonrpc",
+        "result",
+        "id"
+      ],
+      "result": "0xa4b1"
+    },
+    {
+      "kind": "rpc",
+      "url": "https://polygon.api.onfinality.io/public",
+      "ok": false,
+      "http": 429,
+      "latency": 161
+    },
+    {
+      "kind": "rpc",
+      "url": "https://base-rpc.publicnode.com",
+      "ok": true,
+      "http": 200,
+      "latency": 116,
+      "keys": [
+        "jsonrpc",
+        "result",
+        "id"
+      ],
+      "result": "0x2105"
+    },
+    {
+      "kind": "rpc-ws",
+      "url": "wss://arbitrum-one-rpc.publicnode.com",
+      "chain": "0xa4b1",
+      "latency": 158,
+      "ok": true,
+      "result": "0xa4b1"
+    },
+    {
+      "kind": "rpc-ws",
+      "url": "wss://polygon-bor-rpc.publicnode.com",
+      "chain": "0x89",
+      "latency": 244,
+      "ok": true,
+      "result": "0x89"
+    },
+    {
+      "kind": "rpc-ws",
+      "url": "wss://base-rpc.publicnode.com",
+      "chain": "0x2105",
+      "latency": 211,
+      "ok": true,
+      "result": "0x2105"
+    },
+    {
+      "kind": "backend-ws",
+      "url": "wss://backend-base.gains.dev",
+      "latency": 2060,
+      "ok": true,
+      "event": "currentBlock",
+      "keys": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "kind": "handshake",
+      "url": "wss://backend-pricing.eu.gains.dev/v4",
+      "origin": "https://gains.dev",
+      "latency": 135,
+      "ok": false,
+      "error": "getaddrinfo ENOTFOUND backend-pricing.eu.gains.dev",
+      "cause": "ENOTFOUND"
+    },
+    {
+      "kind": "handshake",
+      "url": "wss://backend-pricing.eu.gains.trade/v4",
+      "origin": "https://gains.trade",
+      "latency": 400,
+      "ok": false,
+      "error": "Client network socket disconnected before secure TLS connection was established",
+      "cause": "ECONNRESET"
+    }
+  ]
+}

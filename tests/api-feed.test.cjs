@@ -18,3 +18,7 @@ console.log('PASS: registered Arbitrum API prices, independent mark/index, per-r
 // connecting socket is closed. The adapter must not recursively close it.
 {let queued=[],closes=0;class Reentrant{static all=[];constructor(u){this.url=u;Reentrant.all.push(this);}close(){closes++;if(closes>3)throw Error('recursive close');this.onerror?.({});this.onclose?.({code:1006});}}
 const r=new Router(),s=socket('wss://api.gains.trade/v1/arbitrum/ws',r,Reentrant,{setTimeout:f=>(queued.push(f),f),clearTimeout:f=>queued=queued.filter(x=>x!==f),setInterval:()=>1,clearInterval:()=>{}});Reentrant.all[0].onerror({});assert.equal(closes,1);queued.pop()();assert(Reentrant.all.at(-1).url.includes('.dev'));s.close();}
+// A failed handshake is also permitted to emit error without any close event.
+// Fallback must not depend on that missing event or wait for an outer watchdog.
+{let queued=[];class NoClose{static all=[];constructor(url){this.url=url;NoClose.all.push(this);}close(){}}
+const r=new Router(),s=socket('wss://api.gains.trade/v1/arbitrum/ws',r,NoClose,{setTimeout:f=>(queued.push(f),f),clearTimeout:f=>queued=queued.filter(x=>x!==f),setInterval:()=>1,clearInterval:()=>{}});NoClose.all[0].onerror({});assert.equal(queued.length,1);queued.pop()();assert(NoClose.all.at(-1).url.includes('.dev'));s.close();}

@@ -32,3 +32,5 @@ Automatic gap backfill pauses when you have no open position in that market fami
 v1.7.1 fixes repeated backfill status text and toolbar wrapping that made the chart bounce. Status is generated from a clean per-market value; toolbar actions stay on one line and the plot keeps its allocated geometry during routine status/rate updates.
 
 Version 1.8.0 replaces the unavailable legacy pricing hostname with the verified `/v1/arbitrum` API: registered symbols, independent mark/index values, per-market timestamps, subscribed WebSockets with ping/pong, HTTPS recovery and automatic `.trade`/`.dev` routing. Chart history tries Arbitrum first. `tools/audit-network.cjs` inventories DNS, exact HTTPS routes, WebSocket subscriptions and RPC chain IDs. `tools/verify-price-pipeline.cjs` gates release on real fresh registered BTC prices over both transports and real candles. Audit results describe provider availability at test time, not a future uptime guarantee.
+
+[Verified endpoint inventory and current coverage limits](docs/network-endpoints.md).
