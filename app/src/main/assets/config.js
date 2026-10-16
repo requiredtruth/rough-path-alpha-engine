@@ -5,7 +5,7 @@
  * maxLeverage >= 2 are listed; delisted rows (0.001x) are omitted.
  * Pair 99 is intentionally unlisted (reserved, keeps registry sparse). */
 (function(root){
-const config=Object.freeze({chainId:137,name:'Polygon PoS',httpsRpc:'https://polygon-bor-rpc.publicnode.com',httpsFallback:'https://polygon-rpc.com',wssRpc:'wss://polygon-bor-rpc.publicnode.com',diamond:'0x209A9A01980377916851af2cA075C2b170452018',pyth:'0xff1a0f4744e8582DF1aE09D5611b887B6a12925C',usdc:'0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',usdcDecimals:6,usdcVault:'0x29019Fe2e72E8d4D2118E8D0318BeF389ffe2C81',collateralIndex:3});
+const config=Object.freeze({chainId:137,name:'Polygon PoS',httpsRpc:'https://polygon-bor-rpc.publicnode.com',httpsFallback:'https://polygon.drpc.org',wssRpc:'wss://polygon-bor-rpc.publicnode.com',diamond:'0x209A9A01980377916851af2cA075C2b170452018',pyth:'0xff1a0f4744e8582DF1aE09D5611b887B6a12925C',usdc:'0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',usdcDecimals:6,usdcVault:'0x29019Fe2e72E8d4D2118E8D0318BeF389ffe2C81',collateralIndex:3});
 const M=(symbol,base,pairIndex,maxLeverage,group,degen)=>Object.freeze({symbol,base,quote:'USD',pairIndex,collateralIndex:3,feedId:pairIndex===0?'0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43':null,maxLeverage,minLeverage:group==='forex'?10:1.1,group:group||'crypto',degen:!!degen});
 const markets=Object.freeze([
 M('BTC/USD','BTC',0,200,'crypto'),
