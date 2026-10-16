@@ -1,0 +1,22 @@
+/* Per-service read-only failover. Transaction submissions never pass here. */
+(function(root){'use strict';
+class Router {
+ constructor({fetcher=(...a)=>fetch(...a),clock=()=>Date.now(),cooldown=60000}={}){this.fetcher=fetcher;this.clock=clock;this.cooldown=cooldown;this.states=new Map();}
+ pair(url){const u=new URL(url);if(!['https:','wss:'].includes(u.protocol)||!/(^|\.)gains\.(trade|dev)$/.test(u.hostname)||u.username||u.password)throw Error('Untrusted Gains endpoint');const p=new URL(u);p.hostname=u.hostname.replace(/\.dev$/,'.trade');const s=new URL(p);s.hostname=p.hostname.replace(/\.trade$/,'.dev');return [p.href,s.href];}
+ state(url){const key=new URL(this.pair(url)[0]).origin;if(!this.states.has(key))this.states.set(key,{secondary:false,probe:0});return this.states.get(key);}
+ candidates(url){const pair=this.pair(url),s=this.state(url);return s.secondary&&this.clock()<s.probe?pair.reverse():pair;}
+ success(url){const s=this.state(url);s.secondary=new URL(url).hostname.endsWith('.dev');if(!s.secondary)s.probe=0;}
+ failure(url){const s=this.state(url);if(new URL(url).hostname.endsWith('.trade')){s.secondary=true;s.probe=this.clock()+this.cooldown;}else s.probe=0;}
+ async json(url,ms=10000){if(!/(^|\.)gains\.(trade|dev)$/.test(new URL(url).hostname))return this.one(url,ms);let error;for(const u of this.candidates(url)){try{const j=await this.one(u,ms);this.success(u);return j;}catch(e){error=e;this.failure(u);}}throw error;}
+ async one(url,ms){const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),ms);try{const r=await this.fetcher(url,{signal:ctl.signal,redirect:'error'});if(!r.ok)throw Error('HTTP '+r.status+' '+new URL(url).hostname);return await r.json();}finally{clearTimeout(timer);}}
+ socket(url){return this.candidates(url)[0];}
+}
+/* WebSocket-compatible facade with stale timeout and make-before-break recovery. */
+function socket(url,router=instance,WS=root.WebSocket){let active=null,probe=null,stopped=false,retry=null,watch=null,last=Date.now(),attempt=0;const api={onopen:null,onmessage:null,onclose:null,onerror:null,readyState:0,url:'',close(){stopped=true;clearTimeout(retry);clearInterval(watch);active?.close();probe?.close();api.readyState=3;}};
+ function attach(s,u,isProbe){let delivered=false;const deadline=setTimeout(()=>{if(!delivered)s.close();},10000);s.onopen=e=>{if(stopped){s.close();return;}if(!isProbe){api.readyState=1;api.url=u;api.onopen?.(e);}};s.onmessage=e=>{if(stopped||!validFrame(url,e.data))return;delivered=true;clearTimeout(deadline);if(isProbe){const old=active;active=s;probe=null;isProbe=false;api.url=u;api.readyState=1;router.success(u);old?.close();}if(active!==s)return;router.success(u);attempt=0;last=Date.now();api.onmessage?.(e);};s.onerror=e=>{if(!stopped&&active===s)api.onerror?.(e);s.close();};s.onclose=e=>{clearTimeout(deadline);if(probe===s)probe=null;if(stopped||active!==s)return;router.failure(u);active=null;api.readyState=0;/* reconnect internally; callers only receive final close on explicit disposal */retry=setTimeout(connect,Math.min(30000,500*2**Math.min(attempt++,6)));};}
+ function connect(){if(stopped)return;const u=router.socket(url);try{const s=new WS(u);active=s;api.url=u;last=Date.now();attach(s,u,false);}catch(e){router.failure(u);retry=setTimeout(connect,1000);api.onerror?.(e);}}
+ watch=setInterval(()=>{if(stopped)return;if(active&&Date.now()-last>25000){router.failure(api.url);active.close();}if(active&&api.url.includes('.gains.dev')&&!probe&&router.candidates(url)[0].includes('.gains.trade')){const u=router.pair(url)[0];router.state(url).probe=router.clock()+router.cooldown;try{probe=new WS(u);attach(probe,u,true);}catch{probe=null;}}},3000);connect();return api;
+}
+function validFrame(url,raw){if(typeof raw!=='string'||raw.length>1000000)return false;try{const v=JSON.parse(raw);if(new URL(url).hostname.startsWith('backend-pricing.')){const flat=a=>Array.isArray(a)&&a.length>=2&&a.length%2===0&&a.some((x,i)=>i%2===0&&Number.isInteger(x)&&x>=0&&x<=1000&&Number.isFinite(a[i+1])&&a[i+1]>0);let t=Number(v?.t)||Date.now();if(t<1e12)t*=1000;if(t>Date.now()||Date.now()-t>=5000)return false;return Array.isArray(v)?flat(v):flat(v.m)||flat(v.i);}return typeof v?.name==='string';}catch{return false;}}
+const instance=new Router();const api={Router,instance,socket,validFrame};root.GainsRouting=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window==='undefined'?globalThis:window);

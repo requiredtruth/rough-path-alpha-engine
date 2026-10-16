@@ -1,3 +1,9 @@
+# Rough Path Alpha Engine v1.4.0
+
+Main chart: geometric signature center, gold/rose envelopes with live OI/spot/funding deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
+
+Python integration: [pipeline/README.md](pipeline/README.md). Full behavior and data limitations: [spec.md](spec.md).
+
 # Rough Path Alpha Engine
 
 Android gTrade terminal with a causal Rough Path signature indicator, live Bitcoin chart, upper/lower channel borders, dotted forward projections extended 3× along their own counterparts and an on-device parameter search.
