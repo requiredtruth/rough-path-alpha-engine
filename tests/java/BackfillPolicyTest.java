@@ -1,0 +1,4 @@
+import com.roughpath.alpha.MarketStore;
+public class BackfillPolicyTest {
+ public static void main(String[]args){MarketStore.seed("{\"cash\":100,\"positions\":[{\"pair\":300}],\"history\":[]}");if(!MarketStore.hasHistoryPosition(0)||!MarketStore.hasHistoryPosition(300)||MarketStore.hasHistoryPosition(1))throw new AssertionError("Owned family exposure");MarketStore.reset();if(MarketStore.hasHistoryPosition(0))throw new AssertionError("Flat paper ledger");MarketStore.historyPositions("[313]");if(!MarketStore.hasHistoryPosition(1)||!MarketStore.hasHistoryPosition(313)||MarketStore.hasHistoryPosition(0))throw new AssertionError("Live family exposure");MarketStore.historyPositions("[]");if(MarketStore.hasHistoryPosition(1))throw new AssertionError("Closed live exposure");System.out.println("PASS native history pauses while flat and recognizes paper/live DEGEN family exposure");}
+}

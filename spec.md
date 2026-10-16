@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine — v1.6.1
+# Rough Path Alpha Engine — v1.7.0
 
 ## Installation and identity
 Signed Android APK, package `com.roughpath.alpha`, Android 8.0/API 26 minimum, API 35 target. Android 10+ supports direct report export to Downloads. Install RoughPathAlpha.apk from the GitHub release. It installs alongside TwinTrade. No account or subscription is needed for market data or backtesting. Live execution requires a funded Polygon wallet with native USDC collateral and POL gas.
@@ -73,7 +73,7 @@ Progress displays method, coverage, best risk, train/validation ROI, elapsed tim
 ## Build and release
 JDK 17+, Android SDK platform 35/build-tools 35.0.0, Python 3, zip and Node 22. `install.sh` sets up SDK tooling; `build.sh` builds, aligns and signs the APK. Restore private signing key to `build/signing.jks`, never commit it. Default signing password `android`; alternate password source via RP_KEYSTORE_PASS (apksigner syntax, e.g. env:NAME). `run.sh` serves the local web app on 127.0.0.1:8765, so workers and IndexedDB work on a regular HTTP origin.
 
-Main branch is the development and release branch. Release v1.6.1 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
+Main branch is the development and release branch. Release v1.7.0 includes RoughPathAlpha.apk, source.zip, spec.md and SHA256SUMS. Private signing material stays outside Git and source archives.
 
 ## Primary references
 - https://docs.gains.trade/developer/integrators/guides/mark-%2B-index-introduction
@@ -112,3 +112,11 @@ Public native HTTPS reads use a fixed pool and a strict host/path allowlist, dis
 Funding reads try a chain-specific backend and the global holding-rates route with the exact chain ID (Arbitrum 42161, Polygon 137, Base 8453), then apply the existing domain fallback. Borrowing is not substituted for missing funding. Spot history fallback is labeled Coinbase spot, is separate from the executable oracle price, and cannot overwrite Gains candles. The indicator strip displays structural score, long-OI growth, spot imbalance, hourly funding and heuristic cascade pressure; these are not calibrated probabilities. Compact labels limit public annotations while preserving every available trade line.
 
 The v1.6.1 UI patch reserves the full fee-row height in landscape to keep metric headings visible. The numerical research engine stays at 1.6.0; report compatibility and indicator calculations are unchanged.
+
+## v1.7 adjustable panel rows
+Chart, Rough Path, Positions/History and Orders have persistent minimize/restore and Max/Reset controls. A minimized row becomes a 32px control bar; its content stays mounted, inputs remain intact, and data ingestion/monitoring continues. Available height is redistributed using flex layout. Max restores other panels to their default sizes and gives only the selected row spare space; subsequent minimization frees more space for that row. A second click resets the layout. Settings provides Reset panel sizes. Very short viewports scroll the panel workspace instead of overlaying or hiding controls. The same row model is used after rotation. ResizeObserver coalesces canvas redraws into one animation frame. Research-engine compatibility stays at 1.6.0.
+
+## Exposure-aware backfill and readable host health
+Automatic gap repair and retry scheduling require an owned open paper or live position in the market family (BTC/BTCDEGEN and ETH/ETHDEGEN share exposure). Public traders do not enable repairs. Flat charts omit amber placeholders and exclude their carried-forward values from price scaling; timestamps/gaps remain in the stored data so indicator warmup cannot bridge an outage. Initial history/range requests remain available. Closing the last owned position cancels pending automatic retries; opening an owned position resumes repair. Native background candle-history requests also skip flat market families; oracle recovery and paper monitoring continue. An already-started HTTP request may finish, but subsequent repair attempts recheck exposure.
+
+The Log button and host cards use steady health lights: green for recently successful routes, amber for mixed healthy/failing routes, red for unresolved failures without a healthy route, and grey for waiting/stale status. Endpoint and host order is fixed by name. Last HTTP errors (including 404) stay visible through retries and after recovery. Host state updates every two seconds; event history defaults to a manual snapshot with Refresh events and an unseen count. Live follow is optional. Freeze view stops visual updates while collecting events and exporting the complete bounded journal remains available. Native events retain their source time and cannot overwrite newer foreground status.

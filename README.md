@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine v1.6.1
+# Rough Path Alpha Engine v1.7.0
 
 Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
@@ -24,3 +24,7 @@ JDK 17+, Node 22+, Android platform 35/build-tools 35.0.0. Run `./install.sh`, r
 Source foundation: requiredtruth/twintrade main 85bc329b2dbd4dd70c95ed4b6cdd4d666446ffc1 and requiredtruth/mobile-trader resumable history module. See THIRD_PARTY_NOTICES.md and [spec.md](spec.md) for formulas, endpoints, assumptions and validation scope.
 
 v1.6 adds a **Log** button for endpoint health, retry errors, download progress, CVD warmup and redacted JSON export. Native public-data HTTPS recovery handles WebView CORS restrictions and stalled sockets without marking stale prices fresh. The chart has a separate indicator strip and compact public labels (Settings → Chart labels); every trade line remains available. Arbitrum, Base and Polygon funding now try both local and global routes. Coinbase spot history fallback is explicitly labeled.
+
+Panel controls: **−** minimizes, **+** restores, and **Max** assigns spare space to that panel while returning the others to default sizes. Minimize other panels afterward for additional room. **Reset** returns to normal sizing. Layout survives restart and rotation; Settings → Reset panel sizes restores everything. Market feeds and background monitoring continue while panels are minimized.
+
+Automatic gap backfill pauses when you have no open position in that market family; amber placeholders are hidden while flat. Initial chart history still loads. Host lights show current health, keep the last HTTP failure visible, and sort by host rather than last update. Event history stays still until **Refresh events**; **Live follow** is optional and **Freeze view** lets you read any snapshot.

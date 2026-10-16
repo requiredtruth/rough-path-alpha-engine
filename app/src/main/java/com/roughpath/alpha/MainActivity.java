@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
 
  @Override protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);if(request==41&&result==RESULT_OK&&data!=null&&data.getData()!=null)research.importUri(data.getData());}
  public class Feed {
+  @JavascriptInterface public void historyPositions(String raw){MarketStore.historyPositions(raw);}
   @JavascriptInterface public String networkLog(){return NetworkTrace.snapshot();}
   @JavascriptInterface public void updateCaps(String raw){MarketStore.updateCaps(raw);}
   @JavascriptInterface public void exitApp(){
