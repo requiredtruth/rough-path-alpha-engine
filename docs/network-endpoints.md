@@ -34,7 +34,7 @@ Configured Gains reads try `.trade`, fall back to the same service on `.dev`, an
 - `polygon-rpc.com` returned 401 and is no longer the configured RPC fallback. An OnFinality candidate returned 429 and was not selected.
 - Polygon live orders require verified Polygon oracle quotes. Arbitrum quotes feed the chart and paper simulation; they do not authorize Polygon execution.
 
-Missing funding keeps the deformation neutral and its coverage partial. Spot CVD requires two minutes without detected gaps plus recent actual trades. The underlying Rough Path chart continues while those inputs warm up or remain unavailable.
+Version 1.8.1 additionally derives explicitly labeled collateral-specific SDK estimates from fresh chain variables and a fresh Arbitrum underlying-price reference. Global funding history remains excluded. Estimate coverage can reach 100% without claiming that missing exchange-reported rates became available. Missing or expired estimates keep deformation neutral. Spot CVD requires two minutes without detected gaps plus recent actual trades. The underlying Rough Path chart continues while those inputs warm up or remain unavailable.
 
 ## Reproduce
 

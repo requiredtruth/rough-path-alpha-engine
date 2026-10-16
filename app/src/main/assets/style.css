@@ -108,3 +108,6 @@ body{display:flex;flex-direction:column;overflow:hidden}body>header,body>.strip,
 
 /* Status text cannot resize the price viewport or wrap the toolbar actions. */
 #chartPanel .chartbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;flex:0 0 34px;height:34px;min-height:34px;max-height:34px;gap:4px}#chartPanel #historyStatus{display:block;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}#chartPanel .chartbar .zoom,#chartPanel .chartbar #respawn{min-width:0;flex-shrink:0}#chartPanel .chartbar button{white-space:nowrap;height:28px;padding:3px 6px}#chartPanel .chartbar #respawn{min-width:92px}
+
+/* Bound diagnostics raster/layout work on mobile WebViews. */
+#networkHosts,#networkTasks,#networkEndpoints,#networkEvents{max-height:42vh;overflow:auto;overscroll-behavior:contain;contain:layout style;}#networkDialog{overscroll-behavior:contain;}

@@ -33,9 +33,10 @@ jobs:
         run: |
           node tools/probe-network.cjs
           node tools/verify-price-pipeline.cjs
+          node tools/verify-funding-pipeline.cjs
       - name: Release checksum and package identity
         run: |
-          cd releases/v1.8.0
+          cd releases/v1.8.1
           sha256sum -c SHA256SUMS
           python3 - <<'PY'
           import zipfile
@@ -60,8 +61,8 @@ jobs:
           target: google_apis
           disable-animations: true
           script: |
-            adb install -r releases/v1.7.0/RoughPathAlpha.apk
-            bash tests/android-startup.sh releases/v1.8.0/RoughPathAlpha.apk
+            adb install -r releases/v1.8.0/RoughPathAlpha.apk
+            bash tests/android-startup.sh releases/v1.8.1/RoughPathAlpha.apk
             adb install -r tests/android-worker/test.apk
             adb shell am force-stop com.roughpath.alpha
             adb shell am instrument -w com.roughpath.qa/.WorkerCheck | tee build/android-worker.log
@@ -76,17 +77,18 @@ jobs:
             build/android-window.xml
             build/network-audit.json
             build/price-pipeline.json
+            build/funding-pipeline.json
       - name: Signature and alignment
         run: |
           bt="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
-          "$bt/apksigner" verify --verbose releases/v1.8.0/RoughPathAlpha.apk
-          "$bt/zipalign" -c -p 4 releases/v1.8.0/RoughPathAlpha.apk
+          "$bt/apksigner" verify --verbose releases/v1.8.1/RoughPathAlpha.apk
+          "$bt/zipalign" -c -p 4 releases/v1.8.1/RoughPathAlpha.apk
       - name: Publish APK, source ZIP and specification
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view v1.8.0 >/dev/null 2>&1; then
-            gh release upload v1.8.0 releases/v1.8.0/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS} --clobber
+          if gh release view v1.8.1 >/dev/null 2>&1; then
+            gh release upload v1.8.1 releases/v1.8.1/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS} --clobber
           else
-            gh release create v1.8.0 --target "$GITHUB_SHA" --title 'Rough Path Alpha Engine v1.8.0' --notes-file releases/v1.8.0/notes.md releases/v1.8.0/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS}
+            gh release create v1.8.1 --target "$GITHUB_SHA" --title 'Rough Path Alpha Engine v1.8.1' --notes-file releases/v1.8.1/notes.md releases/v1.8.1/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS}
           fi
