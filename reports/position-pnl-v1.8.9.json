@@ -1,0 +1,24 @@
+{
+  "version": "1.8.9",
+  "versionCode": 21,
+  "positionPercent": "net P&L / collateral * 100",
+  "summary": [
+    "Long",
+    "Short",
+    "Both"
+  ],
+  "summaryScope": "open positions in selected chart market and Paper/Live mode",
+  "weighting": "sum net P&L / sum collateral",
+  "passed": [
+    "weighted side and combined totals",
+    "no-position zeros",
+    "unknown net/collateral handling",
+    "per-position and settled history percentages",
+    "current market scope",
+    "summary below Bot controls",
+    "positions readable at 393x820, 360x640, 820x393",
+    "mouse and touch panel resizing",
+    "full accounting/native/Python suite",
+    "full browser suite"
+  ]
+}

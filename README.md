@@ -1,4 +1,6 @@
-# Rough Path Alpha Engine v1.8.8
+# Rough Path Alpha Engine v1.8.9
+
+**Position P&L:** each position shows net dollars and return on collateral. A Long / Short / Both percentage row sits directly under the Bot controls.
 
 **Bot entries now open on live arrow appearance, before candle close.** Each direction is handled once per candle to avoid repaint duplicates.
 

@@ -52,5 +52,8 @@ function holdingLabel(cost){const gain=cost<0;return {text:'Hold '+(gain?'gain':
 function avgNet(nets){if(!Array.isArray(nets))return null;const f=nets.filter(Number.isFinite);return f.length?f.reduce((s,v)=>s+v,0)/f.length:null;}
 /* Sound mood from average open P&L: positive / negative / flat (none). */
 function positionMood(avg,hasPositions){if(!hasPositions||!Number.isFinite(avg)||avg===0)return 'flat';return avg>0?'positive':'negative';}
-const api={validateCosts,freshQuote,parsePrices,parseV4,open,value,settle,liquidation,collateral,history,mergeLiveTail,dedupeCandles,continuousCandles,mergeCandles,holdingLabel,gapRepairPlan,clusterEntries,moveClass,dataRate,avgNet,positionMood,maxLevFor};root.Engine=api;if(typeof module!=='undefined')module.exports=api;
+/* Return on collateral, weighted by collateral for side/combined totals. */
+function pnlPercent(net,amount){return Number.isFinite(net)&&Number.isFinite(amount)&&amount>0?net/amount*100:NaN;}
+function pnlTotals(rows){const result={long:{net:0,amount:0,count:0,known:true},short:{net:0,amount:0,count:0,known:true},both:{net:0,amount:0,count:0,known:true}};for(const p of rows){for(const g of [result[p.long?'long':'short'],result.both]){g.count++;if(!Number.isFinite(p.net)||!Number.isFinite(p.amount)||p.amount<=0)g.known=false;else{g.net+=p.net;g.amount+=p.amount;}}}for(const g of Object.values(result))g.percent=g.count===0?0:g.known?pnlPercent(g.net,g.amount):NaN;return result;}
+const api={pnlPercent,pnlTotals,validateCosts,freshQuote,parsePrices,parseV4,open,value,settle,liquidation,collateral,history,mergeLiveTail,dedupeCandles,continuousCandles,mergeCandles,holdingLabel,gapRepairPlan,clusterEntries,moveClass,dataRate,avgNet,positionMood,maxLevFor};root.Engine=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
