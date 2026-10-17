@@ -111,3 +111,6 @@ body{display:flex;flex-direction:column;overflow:hidden}body>header,body>.strip,
 
 /* Bound diagnostics raster/layout work on mobile WebViews. */
 #networkHosts,#networkTasks,#networkEndpoints,#networkEvents{max-height:42vh;overflow:auto;overscroll-behavior:contain;contain:layout style;}#networkDialog{overscroll-behavior:contain;}
+/* Chart and positions share the initial viewport; auxiliary panels start folded. */
+.panel-heading{touch-action:none;cursor:ns-resize;user-select:none}.panel-heading b{flex:1}.panel-controls{cursor:default;touch-action:manipulation}.panel-grip{font-size:22px;color:#91b8cb;min-width:32px;text-align:center;line-height:28px;outline-offset:-2px}.panel-heading.is-dragging{background:#245166}.panel-grip:focus-visible{outline:2px solid #62e0ce}
+@media(min-width:640px) and (max-height:500px){#terminalWorkspace{display:grid;gap:3px;align-content:start}#indicatorPanel{grid-column:1 / -1;grid-row:1}#chartPanel{grid-column:1;grid-row:2}#positionsPanel{grid-column:2;grid-row:2}#ordersPanel{grid-column:1 / -1;grid-row:3}.terminal-panel{height:100%;min-height:0}#chartPanel .panel-heading,#positionsPanel .panel-heading{cursor:ew-resize}#chartPanel #chartwrap{min-height:50px}.panel-heading{min-width:0}.panel-heading b{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}}

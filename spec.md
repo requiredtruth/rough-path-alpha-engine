@@ -150,3 +150,6 @@ The SDK estimate adapter currently supports USD-quoted markets. Other quote curr
 
 ## v1.8.3 backend stream validation
 Live Arbitrum tradingVariables WebSocket events exceed 2.9 MB. The prior shared 1 MB price packet limit incorrectly rejected those valid backend events. Backend event envelopes now have a bounded 16 MB allowance matching the public HTTP response cap. Price feeds retain their 1 MB bound and source-clock checks. Rejection messages identify backend versus price traffic, including explicit oversize errors. Recovered diagnostic records are labeled Recovered issue instead of appearing as a current host failure.
+
+## v1.8.4 chart and position workspace
+Initial layout keeps Chart and Positions expanded; indicator and order-control panels start folded. Portrait rows allocate the available viewport with readable minima; short landscape view places chart and positions side by side. Drag an expanded panel header away from its Min/Max buttons to move the shared boundary. Headers support touch/pointer capture and keyboard arrow adjustments. Sizes and fold state persist in terminalPanels.v2; the new layout key applies the corrected defaults once on upgrade. Reset panels returns to these defaults. Max uses spare space while keeping the other panels at the new defaults.

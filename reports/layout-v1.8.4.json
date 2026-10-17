@@ -1,0 +1,36 @@
+{
+  "version": "1.8.4",
+  "defaultExpanded": [
+    "chart",
+    "positions"
+  ],
+  "defaultFolded": [
+    "indicator",
+    "orders"
+  ],
+  "viewports": [
+    [
+      393,
+      820
+    ],
+    [
+      360,
+      640
+    ],
+    [
+      820,
+      393
+    ]
+  ],
+  "checks": [
+    "chart and positions visible together",
+    "mouse drag",
+    "real touch events",
+    "saved proportions restored after reload",
+    "minimize and Max",
+    "landscape side by side",
+    "960 redraws and 240 native status transitions stable",
+    "all JavaScript/native Java/Python regressions passed"
+  ],
+  "backendFix": "reports/backend-frames-v1.8.3.json"
+}
