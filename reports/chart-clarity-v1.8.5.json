@@ -1,0 +1,16 @@
+{
+  "version": "1.8.5",
+  "checks": [
+    "low-leverage position does not flatten candles",
+    "candles render after indicator and prediction layers",
+    "model price-dollar and percent scenario arithmetic",
+    "prediction starts at latest candle close",
+    "vertical drag keeps price auto fit",
+    "stale historical offsets retain at least one candle",
+    "scenario cards and trade/status notices outside candle plot",
+    "chart and positions fit 393x820, 360x640 and 820x393",
+    "all JavaScript/native Java/Python regressions passed",
+    "all mobile browser checks passed"
+  ],
+  "prediction": "Unlevered model price scenarios before fees; no calibrated probability claimed"
+}
