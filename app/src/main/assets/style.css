@@ -122,3 +122,6 @@ body{display:flex;flex-direction:column;overflow:hidden}body>header,body>.strip,
 
 #paperBot[aria-pressed="true"]{color:#49e0ad;border-color:#49e0ad}#paperBotStatus{margin:3px 10px;font-size:11px;line-height:1.35;overflow-wrap:anywhere}
 #paperBotStatus{flex:0 0 auto;max-height:30px;overflow:auto}#positionsBody>.tabs{flex-wrap:wrap}#positionsBody>.tabs button{padding:5px 8px;font-size:12px}#positionsBody>.tabs small{font-size:8px}
+
+#paperBotDialog{max-width:520px;max-height:90dvh;overflow:auto}#paperBotDialog label{display:block;margin:10px 0}#paperBotDialog input[type=number]{display:block;width:100%;margin-top:4px}#positionsBody>.tabs button{padding:5px 6px}#positionsBody>.tabs small{display:none}
+#paperBotDialog .bot-check{display:flex;align-items:center;gap:8px}#paperBotDialog input[type=checkbox]{width:auto;margin:0;flex:0 0 auto}#paperBotDialog>.rp-buttons{position:sticky;bottom:-20px;background:#17212d;padding:10px 0;margin-bottom:-10px}

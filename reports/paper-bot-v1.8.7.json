@@ -1,0 +1,26 @@
+{
+  "version": "1.8.7",
+  "versionCode": 19,
+  "defaults": {
+    "allocation": 10,
+    "leverage": 500,
+    "hedge": true,
+    "chandelier": true,
+    "atrPeriod": 14,
+    "atrMult": 3,
+    "minProfit": 0
+  },
+  "passed": [
+    "strategy and native ledger regressions",
+    "both-direction tiles to cash limit",
+    "Wilder ATR, gaps and completed candles",
+    "long/short monotonic trails",
+    "net-cost and minimum profit gates",
+    "native profit settlements",
+    "dialog validation and saved settings",
+    "apply exits to existing bot positions",
+    "three mobile viewport layouts",
+    "entire browser suite"
+  ],
+  "scope": "Native exits run with price monitoring; arrow entries require the visible terminal. Liquidation is retained. Release CI checks Android installation, restart and bot dialog."
+}

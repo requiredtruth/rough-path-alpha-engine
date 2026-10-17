@@ -52,6 +52,9 @@ public class MainActivity extends Activity {
   @JavascriptInterface public void seed(String raw){MarketStore.seed(raw);}
   @JavascriptInterface public String paper(){return MarketStore.book();}
   @JavascriptInterface public String open(int pair,boolean isLong,double percent,double lev,String cost){return MarketStore.open(pair,isLong,percent,lev,cost);}
+  @JavascriptInterface public void botHistory(int pair,String raw){try{org.json.JSONArray rows=new org.json.JSONArray(raw);if(pair>=0&&pair<=1000&&rows.length()<=1000){MarketStore.merge(pair,rows);MarketStore.save(false);}}catch(Exception ignored){}}
+  @JavascriptInterface public String applyBotOptions(String options){return MarketStore.applyBotOptions(options);}
+  @JavascriptInterface public String botArrowWithOptions(int pair,boolean isLong,String cost,String options){return MarketStore.botArrowWithOptions(pair,isLong,cost,options);}
   @JavascriptInterface public String botArrow(int pair,boolean isLong,String cost){return MarketStore.botArrow(pair,isLong,cost);}
   @JavascriptInterface public String close(String id){return MarketStore.close(id);}
   @JavascriptInterface public void reset(){MarketStore.reset();}

@@ -1,6 +1,6 @@
-# Rough Path Alpha Engine v1.8.6
+# Rough Path Alpha Engine v1.8.7
 
-**New: Bot beside Close** paper trades confirmed chart arrows with 10% of total paper equity at 500×, stacks same-side arrows, and closes/reverses bot positions on opposite arrows. Trades appear in your usual paper positions and chart. Runs while the terminal is visible. See the v1.8.6 sections in [spec.md](spec.md) and [strat.md](strat.md).
+**Bot + Options beside Close:** tile paper longs and shorts independently, with configurable allocation/leverage and per-position Chandelier exits only in net profit after costs. Defaults: 10% total equity, 500×, 14-period one-minute ATR × 3. Settings can update existing bot positions. New entries need the visible terminal; native exits continue with price monitoring. See [spec.md](spec.md) and [strat.md](strat.md).
 
 Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
