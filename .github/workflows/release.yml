@@ -23,9 +23,11 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools platforms;android-35 build-tools;35.0.0
+          log-accepted-android-sdk-licenses: false
       - name: Compile every Android source file
         run: |
-          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
           mkdir -p build/compile-check
           javac -source 8 -target 8 -bootclasspath "$ANDROID_HOME/platforms/android-35/android.jar:$ANDROID_HOME/build-tools/35.0.0/core-lambda-stubs.jar" -classpath 'libs/*' -d build/compile-check app/src/main/java/com/roughpath/alpha/*.java
       - name: Mathematical and native ledger regressions
