@@ -1,0 +1,126 @@
+{
+  "version": "1.8.3",
+  "observedBackendFrames": [
+    {
+      "name": "currentBlock",
+      "count": 186,
+      "maxBytes": 41,
+      "nameType": "string"
+    },
+    {
+      "name": "currentGas",
+      "count": 185,
+      "maxBytes": 38,
+      "nameType": "string"
+    },
+    {
+      "name": "unconfirmedEvent",
+      "count": 18,
+      "maxBytes": 1215,
+      "nameType": "string"
+    },
+    {
+      "name": "liveEvent",
+      "count": 4,
+      "maxBytes": 1208,
+      "nameType": "string"
+    },
+    {
+      "name": "feeTiersTraderTrailingPointsExpired",
+      "count": 1,
+      "maxBytes": 144,
+      "nameType": "string"
+    },
+    {
+      "name": "feeTiersTraderInfoUpdated",
+      "count": 1,
+      "maxBytes": 150,
+      "nameType": "string"
+    },
+    {
+      "name": "pendingAccFundingFeesStored",
+      "count": 1,
+      "maxBytes": 219,
+      "nameType": "string"
+    },
+    {
+      "name": "pendingAccBorrowingFeesStored",
+      "count": 1,
+      "maxBytes": 163,
+      "nameType": "string"
+    },
+    {
+      "name": "accBorrowingFeesPairUpdated",
+      "count": 1,
+      "maxBytes": 200,
+      "nameType": "string"
+    },
+    {
+      "name": "accBorrowingFeesGroupUpdated",
+      "count": 1,
+      "maxBytes": 199,
+      "nameType": "string"
+    },
+    {
+      "name": "openInterestGroupUpdated",
+      "count": 1,
+      "maxBytes": 163,
+      "nameType": "string"
+    },
+    {
+      "name": "oiWindowUpdated",
+      "count": 1,
+      "maxBytes": 136,
+      "nameType": "string"
+    },
+    {
+      "name": "openInterestPairUpdated",
+      "count": 1,
+      "maxBytes": 309,
+      "nameType": "string"
+    },
+    {
+      "name": "feeTiersTraderDailyPointsIncreased",
+      "count": 1,
+      "maxBytes": 158,
+      "nameType": "string"
+    },
+    {
+      "name": "updateTrade",
+      "count": 1,
+      "maxBytes": 1411,
+      "nameType": "string"
+    },
+    {
+      "name": "updatePositionSize",
+      "count": 1,
+      "maxBytes": 2374,
+      "nameType": "string"
+    },
+    {
+      "name": "tradingVariables",
+      "count": 1,
+      "maxBytes": 2982579,
+      "nameType": "string"
+    },
+    {
+      "name": "new-trade-history",
+      "count": 1,
+      "maxBytes": 545,
+      "nameType": "string"
+    }
+  ],
+  "productionFacade": {
+    "at": "2026-10-17T00:43:41.976Z",
+    "host": "wss://backend-arbitrum.gains.dev/",
+    "event": "tradingVariables",
+    "characters": 2982583,
+    "delivered": true
+  },
+  "checks": {
+    "regressions": "passed: JavaScript, native Java and Python",
+    "mobile_browser": "passed: log stress, prices, workers, rotation, panel geometry",
+    "android_compilation": "all sources compiled for API 35",
+    "apk": "v2/v3 signed using unchanged release certificate"
+  }
+}

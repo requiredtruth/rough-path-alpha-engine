@@ -1,0 +1,5 @@
+/* Production facade must deliver real chain snapshots larger than price frames. */
+const fs=require('node:fs'),assert=require('node:assert/strict');
+global.NetDiagnostics=require('../app/src/main/assets/diagnostics.js');
+const {socket}=require('../app/src/main/assets/routing.js');
+(async()=>{let feed;try{const report=await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('No tradingVariables backend event in 90s')),90000);feed=socket('wss://backend-arbitrum.gains.dev');feed.onmessage=e=>{try{const j=JSON.parse(e.data);if(j.name!=='tradingVariables')return;assert(j.value&&typeof j.value==='object');clearTimeout(timer);resolve({at:new Date().toISOString(),host:feed.url,event:j.name,characters:e.data.length,delivered:true});}catch(e){clearTimeout(timer);reject(e);}};});fs.mkdirSync('build',{recursive:true});fs.writeFileSync('build/backend-pipeline.json',JSON.stringify(report,null,2));console.log('PASS production backend facade',JSON.stringify(report));}finally{feed?.close();}})().catch(e=>{console.error(e.message);process.exitCode=1;});

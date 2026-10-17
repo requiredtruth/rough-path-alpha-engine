@@ -39,13 +39,18 @@ jobs:
           npm run test:browser
       - name: Read-only provider connectivity diagnostics
         run: |
-          node tools/probe-network.cjs
-          node tools/verify-price-pipeline.cjs
-          node tools/verify-funding-pipeline.cjs
-          node tools/verify-spot-pipeline.cjs
+          pids=()
+          for probe in probe-network verify-price-pipeline verify-funding-pipeline verify-spot-pipeline verify-backend-pipeline; do
+            node "tools/$probe.cjs" > "build/$probe.log" 2>&1 &
+            pids+=("$!")
+          done
+          status=0
+          for pid in "${pids[@]}"; do wait "$pid" || status=1; done
+          cat build/*pipeline.log
+          exit "$status"
       - name: Release checksum and package identity
         run: |
-          cd releases/v1.8.2
+          cd releases/v1.8.3
           sha256sum -c SHA256SUMS
           python3 - <<'PY'
           import zipfile
@@ -70,8 +75,8 @@ jobs:
           target: google_apis
           disable-animations: true
           script: |
-            adb install -r releases/v1.8.1/RoughPathAlpha.apk
-            bash tests/android-startup.sh releases/v1.8.2/RoughPathAlpha.apk
+            adb install -r releases/v1.8.2/RoughPathAlpha.apk
+            bash tests/android-startup.sh releases/v1.8.3/RoughPathAlpha.apk
             adb install -r tests/android-worker/test.apk
             adb shell am force-stop com.roughpath.alpha
             adb shell am instrument -w com.roughpath.qa/.WorkerCheck | tee build/android-worker.log
@@ -88,17 +93,20 @@ jobs:
             build/price-pipeline.json
             build/funding-pipeline.json
             build/spot-pipeline.json
+            build/backend-pipeline.json
+            build/*pipeline.log
+            build/probe-network.log
       - name: Signature and alignment
         run: |
           bt="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
-          "$bt/apksigner" verify --verbose releases/v1.8.2/RoughPathAlpha.apk
-          "$bt/zipalign" -c -p 4 releases/v1.8.2/RoughPathAlpha.apk
+          "$bt/apksigner" verify --verbose releases/v1.8.3/RoughPathAlpha.apk
+          "$bt/zipalign" -c -p 4 releases/v1.8.3/RoughPathAlpha.apk
       - name: Publish APK, source ZIP and specification
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view v1.8.2 >/dev/null 2>&1; then
-            gh release upload v1.8.2 releases/v1.8.2/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS} --clobber
+          if gh release view v1.8.3 >/dev/null 2>&1; then
+            gh release upload v1.8.3 releases/v1.8.3/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS} --clobber
           else
-            gh release create v1.8.2 --target "$GITHUB_SHA" --title 'Rough Path Alpha Engine v1.8.2' --notes-file releases/v1.8.2/notes.md releases/v1.8.2/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS}
+            gh release create v1.8.3 --target "$GITHUB_SHA" --title 'Rough Path Alpha Engine v1.8.3' --notes-file releases/v1.8.3/notes.md releases/v1.8.3/{RoughPathAlpha.apk,source.zip,spec.md,SHA256SUMS}
           fi

@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');
+const {validFrame,frameReason}=require('../app/src/main/assets/routing.js');
+const backend='wss://backend-arbitrum.gains.dev',price='wss://api.gains.dev/v1/arbitrum/ws';
+const event=JSON.stringify({name:'tradingVariables',value:{payload:'x'.repeat(1200000)}});
+assert(validFrame(backend,event),'Backend snapshots larger than price packets must reach consumers');
+assert(!validFrame(price,event),'Price transport must retain its strict size cap');
+assert(frameReason(price,event).includes('Price frame exceeds 1 MB'));
+assert(!validFrame(backend,'x'.repeat(16000001)));
+assert(frameReason(backend,'x'.repeat(16000001)).includes('Backend event exceeds 16 MB'));
+assert(validFrame(backend,JSON.stringify({name:'currentBlock',value:123})));
+assert(!validFrame(backend,JSON.stringify({value:123})));
+assert(frameReason(backend,JSON.stringify({value:123})).startsWith('Unsupported backend event'));
+assert.equal(frameReason(backend,'{'),'Malformed backend event');
+assert(!validFrame(price,JSON.stringify({channel:'prices',data:[{market:'BTC/USD',mark:'100',index:'100',updatedAt:Date.now()-10000}]})));
+console.log('PASS large backend events, independent price cap, bounded snapshots and transport-specific rejection details');

@@ -147,3 +147,6 @@ The SDK estimate adapter currently supports USD-quoted markets. Other quote curr
 - Coinbase heartbeat messages cannot reset CVD ahead of independently queued matches. Actual trade ID gaps and reconnects still require a full two-minute warmup. Diagnostics show ready and receiving venue counts separately.
 - Funding estimation warnings are research status, not failed connections on the canonical hostname. Stale quotes remain ineligible for execution.
 - Compile all Android sources before release; ResearchBridge uses MainActivity for display-lifecycle checks.
+
+## v1.8.3 backend stream validation
+Live Arbitrum tradingVariables WebSocket events exceed 2.9 MB. The prior shared 1 MB price packet limit incorrectly rejected those valid backend events. Backend event envelopes now have a bounded 16 MB allowance matching the public HTTP response cap. Price feeds retain their 1 MB bound and source-clock checks. Rejection messages identify backend versus price traffic, including explicit oversize errors. Recovered diagnostic records are labeled Recovered issue instead of appearing as a current host failure.
