@@ -20,5 +20,12 @@
     "mouse and touch panel resizing",
     "full accounting/native/Python suite",
     "full browser suite"
-  ]
+  ],
+  "releaseDiagnostics": {
+    "retry": "up to 30 seconds / 12 attempts",
+    "freshnessChecks": "unchanged",
+    "localPriceProbe": "passed",
+    "localFundingProbe": "passed",
+    "retryTests": "passed stale/future rejection and fresh/HTTP recovery"
+  }
 }
