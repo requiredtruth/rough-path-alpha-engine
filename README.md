@@ -1,4 +1,6 @@
-# Rough Path Alpha Engine v1.8.9
+# Rough Path Alpha Engine v1.9.0
+
+Positions now shows long/short dollar exposure beside Close. Alpha research compares reversal, close-only, hedge, profitable-opposite and hold models, with/without adding, direction filters, Chandelier/TP-SL exits, sizing and every supported numeric axis. Results include the top ten, strategy-family coverage and a decoded trial audit. Huge spaces are sampled unless the finite grid fits the budget.
 
 **Position P&L:** each position shows net dollars and return on collateral. A Long / Short / Both percentage row sits directly under the Bot controls.
 

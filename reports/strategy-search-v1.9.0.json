@@ -1,0 +1,34 @@
+{
+  "version": "1.9.0",
+  "versionCode": 22,
+  "scope": "selected market and paper/live account",
+  "dollarExposure": "sum(collateral * leverage) per direction",
+  "models": [
+    "signal/flat",
+    "close on switch + reverse",
+    "hedge",
+    "profitable opposite close + hedge",
+    "hold ignoring opposite while open",
+    "close on switch without reverse"
+  ],
+  "axes": 30,
+  "tested": [
+    "six models with/without adding",
+    "long/short/both filters",
+    "equity/cash sizing and cash exhaustion",
+    "tile cap",
+    "positive net Chandelier exits and minimum profit",
+    "TP/SL and liquidation",
+    "gap closure",
+    "unchanged holdout selection",
+    "48-candidate exhaustive real Worker and UI report",
+    "2001-candidate audit retention with full family totals",
+    "selected market dollar exposure",
+    "393x820,360x640,820x393 positions and toolbar",
+    "full native/accounting/Python suite",
+    "full seven-script browser suite"
+  ],
+  "auditRetention": 2000,
+  "familyCounts": "all evaluations",
+  "androidInstrumentation": "updated and rebuilt; Android 15 execution is a release CI gate"
+}
