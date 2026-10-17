@@ -229,14 +229,14 @@ function togglePaperBot(){
   if(window.Feed&&!Feed.botArrowWithOptions)throw Error('Install the current APK to use the native paper bot');
   mode='paper';history=false;arrowBot={chartPair:pair,market:execution.pairIndex,interval,options:{...paperBotOptions},params:JSON.stringify(researchState.params),cursor:new PaperBot.Cursor(Date.now(),interval)};
   loadHistory(execution.pairIndex,300);$('paperBot').textContent='Stop bot';$('paperBot').setAttribute('aria-pressed','true');
-  botStatus('Paper bot ON · '+marketLabel(execution.pairIndex)+' · '+interval+'m · '+paperBotOptions.allocation+'% equity / '+paperBotOptions.leverage+'× · '+(paperBotOptions.hedge?'tile both directions':'reverse on opposite')+' · next confirmed arrow');render();
+  botStatus('Paper bot ON · '+marketLabel(execution.pairIndex)+' · '+interval+'m · '+paperBotOptions.allocation+'% equity / '+paperBotOptions.leverage+'× · '+(paperBotOptions.hedge?'tile both directions':'reverse on opposite')+' · live arrow appearance');render();
  }catch(e){botStatus('Bot: '+e.message);toast(e.message);}
 }
 function renderPaperBot(){
  if(!arrowBot)return;
  if(mode!=='paper'||pair!==arrowBot.chartPair||candleInterval()!==arrowBot.interval||JSON.stringify(researchState.params)!==arrowBot.params||!researchState.enabled){stopPaperBot('Paper bot stopped · market, interval, indicator or mode changed');return;}
  if(document.hidden)return;
- const now=Date.now();if(arrowBotBusy||now-arrowBotCheckAt<500)return;arrowBotCheckAt=now;
+ const now=Date.now();if(arrowBotBusy)return;arrowBotCheckAt=now;
  if(busy||bulkCloseBusy)return;
  try{
   syncNative();if(!fresh(arrowBot.market)||!fresh(pair)){botStatus('Paper bot ON · waiting for fresh prices · no orders while stale');return;}

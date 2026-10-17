@@ -1,0 +1,23 @@
+{
+  "version": "1.8.8",
+  "versionCode": 20,
+  "entryTiming": "first observed current-candle arrow appearance",
+  "deduplication": "one attempt per direction per live candle per running session",
+  "passed": [
+    "forming neutral to green before candle close",
+    "same-candle red appearance",
+    "redraw/flicker duplicate protection",
+    "current visible arrow on start",
+    "new-candle reset",
+    "history and gap rejection",
+    "live painter dispatch",
+    "full strategy/native/Python suite",
+    "full browser suite"
+  ],
+  "preserved": [
+    "both-direction tiles",
+    "Chandelier net-profit exits",
+    "saved options",
+    "native exits during monitoring"
+  ]
+}

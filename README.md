@@ -1,4 +1,6 @@
-# Rough Path Alpha Engine v1.8.7
+# Rough Path Alpha Engine v1.8.8
+
+**Bot entries now open on live arrow appearance, before candle close.** Each direction is handled once per candle to avoid repaint duplicates.
 
 **Bot + Options beside Close:** tile paper longs and shorts independently, with configurable allocation/leverage and per-position Chandelier exits only in net profit after costs. Defaults: 10% total equity, 500×, 14-period one-minute ATR × 3. Settings can update existing bot positions. New entries need the visible terminal; native exits continue with price monitoring. See [spec.md](spec.md) and [strat.md](strat.md).
 

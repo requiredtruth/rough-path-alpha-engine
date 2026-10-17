@@ -1,4 +1,4 @@
-/* Confirmed chart arrows -> paper ledger only. Never signs or sends an order. */
+/* Live chart arrow appearances -> paper ledger only. Never signs or sends an order. */
 (function(root){
 'use strict';
 const LEVERAGE=500,ALLOCATION=10;
@@ -47,17 +47,18 @@ function trade(book,market,long,quote,cost,now=Date.now(),raw={hedge:false,chand
  p.bot='arrow';p.botOptions={...o};p.botHigh=q.price;p.botLow=q.price;p.status='Paper bot open';book.cash-=amount;book.positions.push(p);return p;
 }
 class Cursor{
- constructor(now,interval){this.interval=interval;this.ms=interval*60000;this.after=Math.floor(now/this.ms)*this.ms-this.ms;}
+ constructor(now,interval){this.interval=interval;this.ms=interval*60000;this.bucket=Math.floor(now/this.ms)*this.ms;this.seen=new Set();}
  next(rows,series,now){
-  // Only the most recently completed interval may trade. Backfills and resumes
-  // cannot replay old arrows, and each candle is consumed even if orders fail.
-  const latest=Math.floor(now/this.ms)*this.ms-this.ms;
-  if(latest<=this.after)return null;
-  const i=rows.findIndex(r=>r.t===latest);if(i<1)return null;
-  this.after=latest;
+  // Trade the forming interval as soon as its chart arrow exists. Each side is
+  // consumed once per candle, even if it flickers, repaints or an order fails.
+  const current=Math.floor(now/this.ms)*this.ms;if(current<this.bucket)return null;
+  if(current>this.bucket){this.bucket=current;this.seen.clear();}
+  const i=rows.findIndex(r=>r.t===current);if(i<1||rows[i-1].t!==current-this.ms)return null;
   const p={ready:series.ready[i],signal:series.signals[i]},before={signal:series.signals[i-1]};
-  return rows[i-1].t===latest-this.ms&&isArrow(p,before)?{long:p.signal>0,t:latest}:null;
+  if(!isArrow(p,before)||this.seen.has(p.signal))return null;
+  this.seen.add(p.signal);return {long:p.signal>0,t:current,provisional:true};
  }
 }
+
 const api={defaults,options,atr,updateStop,exits,LEVERAGE,ALLOCATION,isArrow,equity,trade,Cursor};root.PaperBot=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
