@@ -1,0 +1,24 @@
+{
+  "version": "1.8.6",
+  "versionCode": 18,
+  "tests": {
+    "strategy": "passed",
+    "nativeLedger": "passed",
+    "existingMathematicalAndNativeSuite": "passed",
+    "pythonParity": "5 passed",
+    "browserSuite": "passed all 6 scripts",
+    "mobileViewports": [
+      "393x820",
+      "360x640",
+      "820x393"
+    ],
+    "arbitrumPricePipeline": "passed fresh REST and websocket prices"
+  },
+  "apk": {
+    "v2": true,
+    "v3": true,
+    "zipAligned": true,
+    "sameCertificateAs185": true
+  },
+  "scope": "foreground paper bot; emulator installation and instrumented controls checked by release CI"
+}

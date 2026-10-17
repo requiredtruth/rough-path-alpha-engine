@@ -1,0 +1,18 @@
+import com.roughpath.alpha.MarketStore;import org.json.*;
+public class PaperBotTest{
+ static void check(boolean b,String why){if(!b)throw new AssertionError(why);}
+ static JSONObject book()throws Exception{return new JSONObject(MarketStore.book());}
+ public static void main(String[] args)throws Exception{
+  MarketStore.init(new android.content.Context());MarketStore.reset();String cost="{\"fee\":0,\"slip\":0,\"borrow\":0,\"funding\":0,\"liq\":90}";MarketStore.tick(300,100,System.currentTimeMillis());
+  check("OK".equals(MarketStore.botArrow(300,true,cost)),"First bot entry failed");check("OK".equals(MarketStore.botArrow(300,true,cost)),"Stack failed");
+  JSONObject b=book();check(b.getDouble("cash")==80,"Cash wrong");check(b.getJSONArray("positions").getJSONObject(1).getDouble("amount")==10,"Must size against equity");
+  check("OK".equals(MarketStore.open(300,true,10,500,cost)),"Manual entry failed");
+  check("OK".equals(MarketStore.botArrow(300,false,cost)),"Reversal failed");b=book();check(b.getJSONArray("history").length()==2,"Must close both bot longs");check(b.getJSONArray("positions").length()==2,"Manual long must remain alongside bot short");JSONObject p=b.getJSONArray("positions").getJSONObject(1);check(!p.getBoolean("long")&&p.getDouble("amount")==10&&p.getDouble("lev")==500,"Short parameters wrong");check(p.getString("bot").equals("arrow"),"Bot ownership missing");
+  MarketStore.tick(300,101,System.currentTimeMillis());check(book().getJSONArray("history").getJSONObject(0).getString("status").equals("Liquidated"),"Native bot liquidation missing");
+  MarketStore.reset();MarketStore.tick(0,100,System.currentTimeMillis());check(!MarketStore.botArrow(0,true,cost).equals("OK"),"Cannot bypass market leverage caps");
+  check(!MarketStore.botArrow(313,true,cost).equals("OK"),"Cannot trade stale quote");MarketStore.tick(300,100,System.currentTimeMillis());
+  for(int i=0;i<10;i++)check(MarketStore.botArrow(300,true,cost).equals("OK"),"Stack "+i+" failed");check(!MarketStore.botArrow(300,true,cost).equals("OK"),"Cannot overdraw cash");check(book().getDouble("cash")==0,"Full allocation wrong");
+  check(MarketStore.botArrow(300,false,cost).equals("OK"),"Reverse frees collateral before new sizing");check(book().getJSONArray("positions").length()==1,"Reversal left bot longs");
+  System.out.println("PASS native paper bot: atomic equity sizing, stacking, reversal, manual ownership, caps, stale prices, no overdraft and liquidation");
+ }
+}

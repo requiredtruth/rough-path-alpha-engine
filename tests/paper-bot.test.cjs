@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+require('../app/src/main/assets/config.js');const Engine=require('../app/src/main/assets/engine.js'),Bot=require('../app/src/main/assets/paper-bot.js');
+const now=Date.now(),cost={fee:0,slip:0,borrow:0,funding:0,liq:90},q=()=>({price:100,at:now}),book={cash:100,positions:[],history:[]};
+Bot.trade(book,300,true,q,cost,now);assert.equal(book.cash,90);assert.equal(book.positions[0].amount,10);assert.equal(book.positions[0].lev,500);
+Bot.trade(book,300,true,q,cost,now);assert.equal(book.cash,80);assert.equal(book.positions[1].amount,10,'Second entry is 10% equity, not 10% free cash');
+const manual=Engine.open(300,true,5,500,100,cost,now);book.cash-=5;book.positions.push(manual);
+Bot.trade(book,300,false,q,cost,now);assert.equal(book.positions.length,2);assert(book.positions.includes(manual));assert.equal(book.positions.at(-1).long,false);assert.equal(book.positions.at(-1).amount,10);assert.equal(book.history.length,2);assert(book.history.every(p=>p.status==='Bot reversal'&&p.settlement));
+const price=100.01;const equity=Bot.equity(book,()=>({price,at:now}),now);assert(Math.abs(equity-99.75)<1e-8);
+assert.throws(()=>Bot.trade(book,300,false,()=>({price,at:now-6000}),cost,now),/fresh/);
+const spent={cash:0,positions:[Engine.open(300,false,100,500,100,cost,now)],history:[]};assert.throws(()=>Bot.trade(spent,300,false,q,cost,now),/free paper cash/);assert.equal(spent.positions.length,1);
+const fees={cash:100,positions:[],history:[]};Bot.trade(fees,300,true,q,{...cost,fee:.035,slip:.005},now);assert(Engine.value(fees.positions[0],100,now).net<0);assert(Bot.equity(fees,q,now)<100);
+const t=Math.floor(now/60000)*60000,rows=[{t:t-120000},{t:t-60000},{t}],series={signals:[0,1,-1],ready:[true,true,true]},cursor=new Bot.Cursor(t-60000,1);
+assert.equal(cursor.next(rows,series,t).long,true);assert.equal(cursor.next(rows,series,t),null,'No repeated redraw entry');assert.equal(cursor.next(rows,series,t+60000).long,false);assert.equal(new Bot.Cursor(t,1).next(rows,series,t),null,'Start does not replay historical arrows');
+assert(!Bot.isArrow({ready:true,signal:1},{signal:1}));assert(Bot.isArrow({ready:true,signal:1},{signal:0}));assert(!Bot.isArrow({ready:false,signal:1},{signal:0}));
+assert.equal(new Bot.Cursor(t-60000,1).next([{t:t-180000},{t:t-60000}],{signals:[0,1],ready:[true,true]},t),null,'Gaps do not trade');
+console.log('PASS paper bot: equity sizing, stacking, reversal ownership, 500x, costs, stale quotes, cash limits, confirmed-arrow deduplication and no historical replay');
