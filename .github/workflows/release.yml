@@ -48,6 +48,35 @@ jobs:
           for pid in "${pids[@]}"; do wait "$pid" || status=1; done
           cat build/*pipeline.log
           exit "$status"
+      - name: Rebuild release source ZIP and checksums from verified tracked files
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          import subprocess
+          import zipfile
+
+          release = Path('releases/v1.8.5')
+          root = Path('rough-path-alpha-engine')
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          with zipfile.ZipFile(release / 'source.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=8) as archive:
+              for filename in sorted(filter(None, tracked)):
+                  source = Path(filename)
+                  if source.parts[0] == 'releases' or not source.is_file():
+                      continue
+                  if any(part in {'build', 'node_modules', '.gradle', '.git'} for part in source.parts):
+                      continue
+                  if source.suffix.lower() in {'.jks', '.keystore', '.pem', '.p12', '.pfx'}:
+                      raise RuntimeError(f'Refusing to package key material: {source}')
+                  payload = release / 'spec.md' if filename == 'spec.md' else source
+                  archive.write(payload, (root / source).as_posix())
+
+          files = ['RoughPathAlpha.apk', 'source.zip', 'spec.md']
+          (release / 'SHA256SUMS').write_text(''.join(
+              hashlib.sha256((release / name).read_bytes()).hexdigest() + '  ' + name + '\\n'
+              for name in files
+          ))
+          PY
       - name: Release checksum and package identity
         run: |
           cd releases/v1.8.5
