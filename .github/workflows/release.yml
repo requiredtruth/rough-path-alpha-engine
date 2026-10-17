@@ -73,7 +73,7 @@ jobs:
 
           files = ['RoughPathAlpha.apk', 'source.zip', 'spec.md']
           (release / 'SHA256SUMS').write_text(''.join(
-              hashlib.sha256((release / name).read_bytes()).hexdigest() + '  ' + name + '\\n'
+              hashlib.sha256((release / name).read_bytes()).hexdigest() + '  ' + name + '\n'
               for name in files
           ))
           PY
