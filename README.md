@@ -1,4 +1,4 @@
-# Rough Path Alpha Engine v1.8.1
+# Rough Path Alpha Engine v1.8.2
 
 Main chart: geometric signature center, gold/rose envelopes with live Arbitrum/Polygon/Base OI and funding plus continuous Coinbase/Kraken spot-flow deformation, and matching dotted projections. Gains reads and streams automatically fail over between gains.trade and gains.dev and probe for primary recovery. Missing live inputs keep skew neutral.
 
@@ -35,4 +35,4 @@ Version 1.8.0 replaces the unavailable legacy pricing hostname with the verified
 
 [Verified endpoint inventory and current coverage limits](docs/network-endpoints.md).
 
-Version 1.8.1 makes Log native reads asynchronous, bounds the rendered lists and recovers the Activity after a WebView renderer exit. Android QA repeatedly opens/closes Log under saturated telemetry. Fresh collateral-specific funding/borrowing estimates now use the already bundled Gains SDK and chain-local `/trading-variables/all` state across Arbitrum, Polygon and Base. Estimates use a fresh Arbitrum reference price, are labeled in the indicator and paper costs, expire with their source data, and do not authorize Polygon live execution. Full estimate coverage is distinct from exchange-reported funding coverage.
+Version 1.8.2 makes Log native reads asynchronous, bounds the rendered lists and recovers the Activity after a WebView renderer exit. Android QA repeatedly opens/closes Log under saturated telemetry. Fresh collateral-specific funding/borrowing estimates now use the already bundled Gains SDK and chain-local `/trading-variables/all` state across Arbitrum, Polygon and Base. Estimates use a fresh Arbitrum reference price, are labeled in the indicator and paper costs, expire with their source data, and do not authorize Polygon live execution. Full estimate coverage is distinct from exchange-reported funding coverage.

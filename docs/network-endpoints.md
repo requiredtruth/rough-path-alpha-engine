@@ -2,7 +2,7 @@
 
 Read-only audit: 133 DNS, HTTPS, subscribed WebSocket and RPC checks. [Raw observations](network-audit-2026-10-16.json). Availability is observed at test time. HTTP success alone does not establish quote freshness or complete input coverage.
 
-Configured Gains reads try `.trade`, fall back to the same service on `.dev`, and probe the primary after 60 seconds. The current audit found `.trade` TLS/socket resets, working `.dev` services below, and no DNS record for the old `.dev` pricing subdomains. The app now uses the verified API pricing service rather than guessing another pricing hostname.
+Version 1.8.2 uses the verified API and chain/global `.dev` services first, falls back to `.trade`, and probes the preferred host after 60 seconds. HTTPS and WSS share health for each service. The current audit found `.trade` TLS/socket resets, working `.dev` services below, and no DNS record for the old `.dev` pricing subdomains. The app now uses the verified API pricing service rather than guessing another pricing hostname.
 
 | Data | Working route | Validation |
 |---|---|---|

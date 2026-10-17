@@ -1,0 +1,8 @@
+/* Exercise the production spot subscriptions and continuity window against live venues. */
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const {SpotBook}=require('../app/src/main/assets/spectrum.js'),{Journal}=require('../app/src/main/assets/diagnostics.js');
+const source=fs.readFileSync('app/src/main/assets/research.js','utf8'),start=source.indexOf('function startRoughSpot('),end=source.indexOf('\n',start),book=new SpotBook(),journal=new Journal();
+const ctx=vm.createContext({roughSpot:book,roughSpotMarket:'',roughSpotClosers:[],NetDiagnostics:{journal},WebSocket,setTimeout,clearTimeout,setInterval,clearInterval,Date,JSON,Number,Math});
+vm.runInContext(source.slice(start,end),ctx);ctx.startRoughSpot('BTC/USD');
+const progress=setInterval(()=>console.log(JSON.stringify({elapsed:Math.floor((Date.now()-began)/1000),books:[...book.books].map(([venue,b])=>({venue,trades:b.trades,warm:Math.floor((Date.now()-b.gapAt)/1000)}))})),15000),began=Date.now();
+setTimeout(()=>{try{const now=Date.now(),summary=book.summarize('BTC/USD',now),report={at:new Date().toISOString(),summary,books:[...book.books].map(([key,b])=>({key,trades:b.trades,lastTradeAge:now-b.at,windowAge:now-b.gapAt}))};fs.mkdirSync('build',{recursive:true});fs.writeFileSync('build/spot-pipeline.json',JSON.stringify(report,null,2));assert.equal(summary.venues.length,2,'Both actual spot feeds must complete the continuity window');console.log('PASS live production Coinbase + Kraken subscriptions and continuous two-minute signed flow');}catch(e){console.error(e.message);process.exitCode=1;}finally{clearInterval(progress);ctx.roughSpotClosers.forEach(close=>close());}},135000);

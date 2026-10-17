@@ -1,0 +1,160 @@
+{
+  "version": "1.8.2",
+  "price": {
+    "at": "2026-10-17T00:19:38.782Z",
+    "registry": 488,
+    "freshRestMarkets": 329,
+    "websocket": "subscribed fresh registered BTC mark/index received",
+    "historyRows": 10,
+    "funding": {
+      "long": -1.7061153290224255e-05,
+      "short": 8.917622290873217e-06,
+      "borrow": 2.2824e-06
+    },
+    "scope": "Arbitrum market data; Polygon execution not authorized by this feed"
+  },
+  "funding": {
+    "at": "2026-10-17T00:20:21.190Z",
+    "kind": "sdk-estimate",
+    "referenceChainId": 42161,
+    "chainCoverage": 3,
+    "fundingCoverage": 1,
+    "funding": -6.58488562062865e-06,
+    "components": [
+      {
+        "chain": "ARBITRUM",
+        "long": -1.7088784853771282e-05,
+        "short": 8.932064916340971e-06,
+        "borrow": 2.2824e-06,
+        "at": 1792196421130,
+        "expiresAt": 1792196489492,
+        "stateAt": 1792196369492,
+        "quoteAt": 1792196420898,
+        "chainId": 42161,
+        "ci": 3,
+        "pi": 0,
+        "market": "BTC/USD",
+        "block": 515528847,
+        "kind": "sdk-estimate",
+        "referenceChainId": 42161
+      },
+      {
+        "chain": "ARBITRUM",
+        "long": 0,
+        "short": 0,
+        "borrow": 0,
+        "at": 1792196421131,
+        "expiresAt": 1792196489492,
+        "stateAt": 1792196369492,
+        "quoteAt": 1792196420898,
+        "chainId": 42161,
+        "ci": 2,
+        "pi": 0,
+        "market": "BTC/USD",
+        "block": 515528847,
+        "kind": "sdk-estimate",
+        "referenceChainId": 42161
+      },
+      {
+        "chain": "BASE",
+        "long": 2.8063913547168e-05,
+        "short": -1.2836962979152938e-05,
+        "borrow": 2.2824e-06,
+        "at": 1792196421136,
+        "expiresAt": 1792196521355,
+        "stateAt": 1792196401355,
+        "quoteAt": 1792196420898,
+        "chainId": 8453,
+        "ci": 1,
+        "pi": 0,
+        "market": "BTC/USD",
+        "block": 52703534,
+        "kind": "sdk-estimate",
+        "referenceChainId": 42161
+      },
+      {
+        "chain": "BASE",
+        "long": 6.123309465114001e-05,
+        "short": -6.123309465114001e-05,
+        "borrow": 2.2824e-06,
+        "at": 1792196421136,
+        "expiresAt": 1792196521355,
+        "stateAt": 1792196401355,
+        "quoteAt": 1792196420898,
+        "chainId": 8453,
+        "ci": 2,
+        "pi": 0,
+        "market": "BTC/USD",
+        "block": 52703534,
+        "kind": "sdk-estimate",
+        "referenceChainId": 42161
+      },
+      {
+        "chain": "POLYGON",
+        "long": 6.2643807275184e-05,
+        "short": -5.194408192645942e-05,
+        "borrow": 2.2824e-06,
+        "at": 1792196421188,
+        "expiresAt": 1792196517898,
+        "stateAt": 1792196397898,
+        "quoteAt": 1792196420898,
+        "chainId": 137,
+        "ci": 3,
+        "pi": 0,
+        "market": "BTC/USD",
+        "block": 95660715,
+        "kind": "sdk-estimate",
+        "referenceChainId": 42161
+      },
+      {
+        "chain": "POLYGON",
+        "long": 0.00014898208669300797,
+        "short": -0.00014898208669300797,
+        "borrow": 4.5648e-06,
+        "at": 1792196421188,
+        "expiresAt": 1792196517898,
+        "stateAt": 1792196397898,
+        "quoteAt": 1792196420898,
+        "chainId": 137,
+        "ci": 1,
+        "pi": 0,
+        "market": "BTC/USD",
+        "block": 95660715,
+        "kind": "sdk-estimate",
+        "referenceChainId": 42161
+      }
+    ]
+  },
+  "checks": {
+    "javascript_native_python": "passed",
+    "mobile_browser": "passed including log stress, price ingestion, worker, rotations and panel stability",
+    "android_compilation": "all sources compiled for API 35",
+    "apk_signature": "v2 and v3, original F0144CE09D15B3FF68C5C53D7440CBE59D3E72115DBFD256B201DAA78D3966DA"
+  },
+  "spot": {
+    "at": "2026-10-17T00:24:22.203Z",
+    "summary": {
+      "spotDelta": -18443.79870876399,
+      "spotVolume": 89650.4350632578,
+      "spotAt": 1792196662047,
+      "venues": [
+        "Coinbase",
+        "Kraken"
+      ]
+    },
+    "books": [
+      {
+        "key": "Coinbase:BTC/USD",
+        "trades": 575,
+        "lastTradeAge": 7,
+        "windowAge": 135012
+      },
+      {
+        "key": "Kraken:BTC/USD",
+        "trades": 99,
+        "lastTradeAge": 3274,
+        "windowAge": 135002
+      }
+    ]
+  }
+}
