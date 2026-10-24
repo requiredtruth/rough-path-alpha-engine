@@ -2,7 +2,7 @@
 (function(root){'use strict';
 class Router {
  constructor({fetcher,clock=()=>Date.now(),cooldown=60000}={}){this.nativeRead=!fetcher;this.fetcher=fetcher||((...a)=>fetch(...a));this.clock=clock;this.cooldown=cooldown;this.states=new Map();}
- pair(url){const u=new URL(url);if(!['https:','wss:'].includes(u.protocol)||!/(^|\.)gains\.(trade|dev)$/.test(u.hostname)||u.username||u.password)throw Error('Untrusted Gains endpoint');const p=new URL(u);const dev=/^(api|backend-(arbitrum|polygon|base|global))\.gains\.(trade|dev)$/.test(u.hostname);p.hostname=u.hostname.replace(/\.(trade|dev)$/,dev?'.dev':'.trade');const s=new URL(p);s.hostname=p.hostname.replace(/\.(trade|dev)$/,dev?'.trade':'.dev');return [p.href,s.href];}
+ pair(url){const u=new URL(url);if(!['https:','wss:'].includes(u.protocol)||!/(^|\.)gains\.(trade|dev)$/.test(u.hostname)||u.username||u.password)throw Error('Untrusted Gains endpoint');const p=new URL(u);const dev=/^api\.gains\.(trade|dev)$/.test(u.hostname);p.hostname=u.hostname.replace(/\.(trade|dev)$/,dev?'.dev':'.trade');const s=new URL(p);s.hostname=p.hostname.replace(/\.(trade|dev)$/,dev?'.trade':'.dev');return [p.href,s.href];}
  state(url){const key=new URL(this.pair(url)[0]).hostname;if(!this.states.has(key))this.states.set(key,{secondary:false,probe:0});return this.states.get(key);}
  candidates(url){const pair=this.pair(url),s=this.state(url);return s.secondary&&this.clock()<s.probe?pair.reverse():pair;}
  success(url){root.NetDiagnostics?.journal.log(url,'healthy','Valid service data received',{lastSuccess:this.clock()});const s=this.state(url);s.secondary=new URL(url).hostname!==new URL(this.pair(url)[0]).hostname;if(!s.secondary)s.probe=0;}

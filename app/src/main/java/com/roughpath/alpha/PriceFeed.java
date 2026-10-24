@@ -9,7 +9,8 @@ public final class PriceFeed {
  public static int ingest(String raw,long received){
   if(raw==null||raw.length()>1000000||received<=0||received>System.currentTimeMillis())return 0;
   try{JSONObject frame=raw.trim().startsWith("{")?new JSONObject(raw):null;long stamp=received;if(frame!=null&&frame.has("t")){double source=frame.optDouble("t",Double.NaN);if(!Double.isFinite(source)||source<=0){MarketStore.feedError="Invalid source timestamp";return 0;}if(source>=1e17)source/=1e6;else if(source>=1e14)source/=1000;else if(source<1e12)source*=1000;if(source-received>2000||received-source>=5000){MarketStore.feedError="Rejected source clock: "+(long)(source-received)+" ms vs device";return 0;}stamp=Math.min(received,(long)source);}
-   int index=apply(frame==null?null:frame.optJSONArray("i"),stamp,true),mark=apply(frame==null?new JSONArray(raw):frame.optJSONArray("m"),stamp,false);
+   JSONArray legacy=frame==null?new JSONArray(raw):null;
+   int index=apply(frame==null?legacy:frame.optJSONArray("i"),stamp,true),mark=apply(frame==null?legacy:frame.optJSONArray("m"),stamp,false);
    if(mark+index>0){MarketStore.feedError="";MarketStore.lastAcceptedFrame=received;}return mark+index;
   }catch(Exception e){MarketStore.feedError="Invalid price frame";return 0;}
  }

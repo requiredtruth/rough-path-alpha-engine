@@ -886,3 +886,8 @@ Release verification for v1.8.9 retries transient BTC REST failures for up to 30
 
 ### v1.9.0 strategy search
 Search now enumerates six explicit models × adding × allowed direction × exit type × sizing, with configurable ATR, net profit, TP/SL and tile cap, plus all indicator/cost/risk numeric axes. Hedge and profitable-opposite exit models retain independently funded long and short tiles. Reverse and close-without-reverse differ on whether the switch arrow opens the opposite side immediately. Adding occurs on new arrow appearance between stored historical samples; next-sample execution preserves causality and cannot reproduce intrabar repaints from OHLC. Profit Chandelier uses only prior completed-sample volatility/extremes and requires positive net after costs. All-family trial counts and a bounded decoded individual audit accompany the top ten train/validation rankings; holdout is never used to rank candidates. Full coverage means every combination of the configured finite ranges was tried; a sampled budget never implies continuous or universal strategy coverage.
+
+
+### v1.9.1 live inputs
+
+The current execution and chart price source is the shared Gains v4 oracle at `backend-pricing.eu.gains.trade/v4`, matching Twintrade. Native and browser handlers accept the currently observed flat pair/price frames and distinct mark/index object frames. The native handler updates both quote maps for flat oracle frames. Minute OHLC snapshots seed candle data only. Funding calculations retain chain-local collateral/OI state and now use this fresh oracle reference rather than waiting for the Arbitrum REST registry. All rough-path math, bands, projections, search and bot rules above remain unchanged.

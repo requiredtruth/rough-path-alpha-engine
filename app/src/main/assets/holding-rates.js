@@ -7,7 +7,7 @@ function snapshot(raw,chainId,now=Date.now()){if(!CHAINS.has(chainId)||!Array.is
 function calculate(state,ci,pi,quote,math=root.GainsMath,now=Date.now()){
  if(!state||!CHAINS.has(state.chainId)||!Number.isInteger(pi)||pi<0||!Number.isInteger(ci)||ci<1)throw Error('Invalid chain/collateral/market');sourceTime(state.at,now);
  const pair=state.pairs[pi],symbol=pair?String(pair.from).split('_')[0]+'/'+pair.to:'';
- if(!symbol||pair.to!=='USD'||quote?.chainId!==42161||family(quote.market)!==family(symbol))throw Error('Reference market mismatch');
+ if(!symbol||pair.to!=='USD'||(quote?.source!=='gains-v4'&&quote?.chainId!==42161)||family(quote.market)!==family(symbol))throw Error('Reference market mismatch');
  const qt=finite(quote.at,'reference timestamp');if(qt<=0||qt>now||now-qt>=5000)throw Error('Reference price stale or future');const price=finite(quote.price,'reference price');if(price<=0)throw Error('Invalid reference price');
  const c=state.collaterals.get(ci),params=c?.fundingFees?.pairParams?.[pi],data=c?.fundingFees?.pairData?.[pi],oi=c?.pairOis?.[pi];
  if(!params||!data||!oi?.token||typeof params.fundingFeesEnabled!=='boolean'||typeof params.aprMultiplierEnabled!=='boolean')throw Error('Incomplete collateral funding state');
@@ -19,7 +19,7 @@ function calculate(state,ci,pi,quote,math=root.GainsMath,now=Date.now()){
  let borrowingParams=null,borrowingData=null;if(borrowParams&&borrowData){if(finite(borrowParams.borrowingRatePerSecondP,'borrowing rate')<0)throw Error('Negative borrowing');borrowingParams=math.convertBorrowingFeeParamsV2(borrowParams);borrowingData=math.convertPairBorrowingFeeDataV2(borrowData);}
  const net=longToken-shortToken,r=math.getPairHoldingFeeRates({fundingParams:convertedParams,fundingData:convertedData,pairOiToken:{oiLongToken:longToken,oiShortToken:shortToken},netExposureToken:net,netExposureUsd:net*price,borrowingParams,borrowingData,currentPairPrice:price,currentTimestamp:ts});
  const long=r.fundingFeeLongHourlyRate,short=r.fundingFeeShortHourlyRate,borrow=borrowingParams?r.borrowingFeeHourlyRate:NaN;if(![long,short].every(Number.isFinite)||borrowingParams&&(!Number.isFinite(borrow)||borrow<0))throw Error('Nonfinite SDK fee estimate');
- return {long,short,borrow,at:now,expiresAt:Math.min(state.at+120000,qt+120000),stateAt:state.at,quoteAt:qt,chainId:state.chainId,ci,pi,market:symbol,block:state.block,kind:'sdk-estimate',referenceChainId:42161};
+ return {long,short,borrow,at:now,expiresAt:Math.min(state.at+120000,qt+120000),stateAt:state.at,quoteAt:qt,chainId:state.chainId,ci,pi,market:symbol,block:state.block,kind:'sdk-estimate',referenceChainId:quote.source==='gains-v4'?null:42161,referenceSource:quote.source||'arbitrum-api'};
 }
 const api={snapshot,calculate,sourceTime};root.HoldingRates=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

@@ -5,7 +5,7 @@ public class LivePriceSocketProbe {
   MarketStore.init(new android.content.Context());CountDownLatch live=new CountDownLatch(1);AtomicInteger accepted=new AtomicInteger(),objects=new AtomicInteger(),arrays=new AtomicInteger();
   WebSocketClient s=new WebSocketClient(new URI("wss://backend-pricing.eu.gains.trade/v4")){
    public void onOpen(ServerHandshake h){System.out.println("Gains v4 websocket handshake connected");}
-   public void onMessage(String raw){if(raw.trim().startsWith("{"))objects.incrementAndGet();else arrays.incrementAndGet();accepted.addAndGet(PriceFeed.ingest(raw,System.currentTimeMillis()));if(MarketStore.priceOf(0)>0&&System.currentTimeMillis()-MarketStore.timeOf(0)<5000)live.countDown();}
+   public void onMessage(String raw){if(raw.trim().startsWith("{"))objects.incrementAndGet();else arrays.incrementAndGet();accepted.addAndGet(PriceFeed.ingest(raw,System.currentTimeMillis()));try{JSONObject q=new JSONObject(MarketStore.snapshot());if(MarketStore.priceOf(0)>0&&System.currentTimeMillis()-MarketStore.timeOf(0)<5000&&q.getJSONObject("indexPrices").optDouble("0",0)>0&&System.currentTimeMillis()-q.getJSONObject("indexTimes").optLong("0",0)<5000)live.countDown();}catch(Exception ignored){}}
    public void onClose(int c,String r,boolean remote){System.out.println("Socket closed: "+c);}
    public void onError(Exception e){System.out.println("Socket error: "+e.getClass().getSimpleName());}
   };

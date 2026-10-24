@@ -1,4 +1,6 @@
-# Rough Path Alpha Engine v1.9.0
+# Rough Path Alpha Engine v1.9.1
+
+Version 1.9.1 restores Twintrade’s working v4 price transport in native and foreground code, accepts flat and mark/index frames, removes the incompatible Arbitrum-only order guard, and uses production trade backends first. Minute chart snapshots cannot authorize orders.
 
 Positions now shows long/short dollar exposure beside Close. Alpha research compares reversal, close-only, hedge, profitable-opposite and hold models, with/without adding, direction filters, Chandelier/TP-SL exits, sizing and every supported numeric axis. Results include the top ten, strategy-family coverage and a decoded trial audit. Huge spaces are sampled unless the finite grid fits the budget.
 
@@ -21,7 +23,7 @@ Android gTrade terminal with a causal Rough Path signature indicator, live Bitco
 1. Install **RoughPathAlpha.apk** (Android 8+).
 2. Zoom offers calendar **1 month** and **6 months** charts with cached hourly history. Use **Rough α** next to Stats to download Coinbase BTC one-minute data. Month/six-month research presets and Last year are available; Last year downloads about 525,600 candles; Download / resume preserves cached progress.
 3. Search indicator settings, **1–500x leverage** and **collateral %** using lists or `min:max:step` ranges. Choose exhaustive grid, seeded random, simulated annealing or hybrid. **Huge search preset** explores a broad space with 100,000 evaluations; budgets support up to 1,000,000 unique candidates per run. Entire-space search requires the budget to cover the displayed finite count. Edit simulation costs. The optimizer uses chronological training/validation plus an untouched holdout. The best eligible parameters update the live chart automatically by default, or use Apply selected indicator. Channel and projection settings participate in backtest signal generation.
-4. Paper trading starts with $100 using verified Arbitrum prices. Polygon live submission is blocked while its own oracle feed is unavailable; Arbitrum prices are not substituted for Polygon execution quotes. Research supports 1x–500x; static live minimum is 1.1x until discovery reports otherwise.
+4. Paper trading starts with $100 using the same Gains v4 oracle as Twintrade. Polygon live orders require fresh synchronized mark/index quotes and on-chain validation. Research supports 1x–500x; static live minimum is 1.1x until discovery reports otherwise.
 
 Actual trade-tick pagination is also available. Tick history is much larger than candles; optimization caps each tick book at 1.1 million samples. The app never labels candles as ticks, never invents missing samples and never sends automated live orders from research signals.
 
@@ -43,4 +45,4 @@ Version 1.8.0 replaces the unavailable legacy pricing hostname with the verified
 
 [Verified endpoint inventory and current coverage limits](docs/network-endpoints.md).
 
-Version 1.8.5 makes Log native reads asynchronous, bounds the rendered lists and recovers the Activity after a WebView renderer exit. Android QA repeatedly opens/closes Log under saturated telemetry. Fresh collateral-specific funding/borrowing estimates now use the already bundled Gains SDK and chain-local `/trading-variables/all` state across Arbitrum, Polygon and Base. Estimates use a fresh Arbitrum reference price, are labeled in the indicator and paper costs, expire with their source data, and do not authorize Polygon live execution. Full estimate coverage is distinct from exchange-reported funding coverage.
+Version 1.8.5 makes Log native reads asynchronous, bounds the rendered lists and recovers the Activity after a WebView renderer exit. Android QA repeatedly opens/closes Log under saturated telemetry. Fresh collateral-specific funding/borrowing estimates now use the already bundled Gains SDK and chain-local `/trading-variables/all` state across Arbitrum, Polygon and Base. Estimates use a fresh Gains oracle reference price, are labeled in the indicator and paper costs, expire with their source data, and do not authorize Polygon live execution. Full estimate coverage is distinct from exchange-reported funding coverage.
